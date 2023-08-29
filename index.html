@@ -4,59 +4,70 @@ title: Home
 ---
 
 <div class="posts">
- 
+
   <div class="post">
     <h1 class="post-title">
-     Contents at a glance
+      Contents at a glance
     </h1>
-    <p>I never understood why so many technical blogs organize their posts by date. Newer content isn't 
-     always better. </p><p>Searching posts by date is cumbersome when a blog has too many posts.
-    I believe that a category-based overview is much better.</p>
+    <p>I never understood why so many technical blogs organize their posts by date. Newer content isn't
+      always better. </p>
+    <p>Searching posts by date is cumbersome when a blog has too many posts.
+      I believe that a category-based overview is much better.</p>
 
     <h2>Testing</h2>
 
-   <ul>
-  {% for post in site.categories.testing %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+    <ul>
+      {% for post in site.categories.testing %}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
 
-<h2>Containers</h2>
 
-   <ul>
-  {% for post in site.categories.containers %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+    <h2>Java</h2>
 
-<h2>Continuous integration</h2>
+    <ul>
+      {% for post in site.categories.java %}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
 
-   <ul>
-  {% for post in site.categories.hosted-ci-comparison %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+    <h2>Containers</h2>
 
-<h2>People</h2>
+    <ul>
+      {% for post in site.categories.containers %}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
 
-   <ul>
-  {% for post in site.categories.people %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+    <h2>Continuous integration</h2>
+
+    <ul>
+      {% for post in site.categories.hosted-ci-comparison %}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h2>People</h2>
+
+    <ul>
+      {% for post in site.categories.people %}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
 
 
   </div>
- 
 
-  
+
+
 </div>
-

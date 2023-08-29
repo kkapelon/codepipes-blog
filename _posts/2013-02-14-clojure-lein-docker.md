@@ -1,8 +1,10 @@
 ---
 layout: post
-title: Multi stage Docker container for a Clojure/Lein application 
-category: containers
+title: The Adventurous Developer’s Guide to JVM Languages – Clojure 
+category: java
 ---
+
+_This post was originally published at the [JRebel/Zeroturnaround blog](https://www.jrebel.com/). Reposting here since it is not available there any more._
 
 ## Introduction
 
@@ -205,4 +207,3 @@ Although it would be possible to abuse Clojure and write code in a Java-like way
 
 P.S. There is also [ClojureCLR](https://github.com/clojure/clojure-clr) for .NET development and [ClojureScript](https://github.com/clojure/clojurescript) which might be of interest to you.
 
-_This post was originally published at the [JRebel/Zeroturnaround blog](https://www.jrebel.com/). Reposting here since it is not available there any more._
