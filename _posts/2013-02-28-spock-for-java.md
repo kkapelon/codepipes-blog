@@ -4,6 +4,8 @@ title: Using Spock to test Groovy AND Java applications
 category: testing
 ---
 
+_This post was originally published at the [JRebel/Zeroturnaround blog](https://www.jrebel.com/). Reposting here since it is not available there any more._
+
 ## Introduction
 
 When it comes to Java, most developers either use [JUnit](https://junit.org/) or [TestNG](http://testng.org/doc/index.html). JUnit is the established de-facto solution, while TestNG attempts to offer additional features needed for Enterprise applications.
@@ -284,4 +286,3 @@ In this post we discovered that Spock, which is a testing framework for Groovy, 
 
 Although Spock has not reached the 1.0 release yet, it offers several advanced features for testing that make it a viable alternative to JUnit mockito. Keep an eye on Spock, because as it matures, the compact code of Groovy tests compared to verbose JUnit/TestNG code might entice you to write your whole unit test in Groovy DSL. But we’ll keep our fingers crossed for that.
 
-_This post was originally published at the [JRebel/Zeroturnaround blog](https://www.jrebel.com/). Reposting here since it is not available there any more._

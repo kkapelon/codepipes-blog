@@ -4,6 +4,8 @@ title: Subtle signs that you just got hired in the wrong IT company
 category: people
 ---
 
+Originally published in [JAXenter](https://jaxenter.com/) issue of December 2018 and reposted here with permission.
+
 Passing the interview process and landing a new job is always
 an overwhelming experience. This is especially true if you are
 also a recent graduate and this is your first job. You are filled
@@ -336,7 +338,7 @@ team".
 
 
 
-Originally published in [JAXenter](https://jaxenter.com/) issue of December 2018 and reposted with permission.
+
 
 
 
