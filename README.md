@@ -1,3 +1,5 @@
+[![pages-build-deployment](https://github.com/kkapelon/codepipes-blog/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/kkapelon/codepipes-blog/actions/workflows/pages/pages-build-deployment)
+
 # Codepipes blog source
 [Jekyll](http://jekyllrb.com/) pages for my blog found at http://blog.codepipes.com/
 
