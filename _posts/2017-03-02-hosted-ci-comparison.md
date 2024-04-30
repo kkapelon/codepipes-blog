@@ -8,6 +8,7 @@ redirect_from:
 
 | Version history | Changes       | 
 | -------------   |:--------| 
+| March 2024      | [Octopus Deploy](https://octopus.com/)  buys [Codefresh](#codefresh) |
 | February 2019      | [JFrog](https://jfrog.com/)  buys [Shippable](#shippable) |
 | January 2019      | [Idera](https://www.idera.com/)  buys [TravisCI](#travis) |
 | February 2018      | [Cloudbees](https://www.cloudbees.com/)  buys [Codeship](#codeship) |
@@ -215,6 +216,8 @@ If you work at CircleCI and are reading this, your product is almost perfect. Yo
 | **Final Verdict**    | Highly recommended for simple projects with no pipelines |
 
 ### Codefresh
+
+**Update March 2024**: Octopus [bought Codefresh](https://codefresh.io/blog/qa-what-you-need-to-know-about-codefresh-joining-octopus/) so my review might soon be obsolete.
 
 [Codefresh](http://codefresh.io) is an American company located  in Mountain View and launched in 2014.
 
