@@ -15,3 +15,5 @@ author:
   name:           'Kostis Kapelonis'
   url:            https://twitter.com/codepipes
 
+plugins:
+  - jekyll-redirect-from
