@@ -1,7 +1,9 @@
 ---
 layout: post
 title: Comparison of Hosted Continuous Integration products
-category: hosted-ci-comparison
+category: continuous-integration
+redirect_from:
+  - /hosted-ci-comparison/hosted-ci-comparison.html
 ---
 
 | Version history | Changes       | 
