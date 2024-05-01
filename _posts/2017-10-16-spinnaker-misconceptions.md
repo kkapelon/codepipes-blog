@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spinnaker Is Not a Build Server (and other Misconceptions)
+title: Spinnaker Is Not a Build Server (And Other Misconceptions)
 category: continuous-deployment
 ---
 
