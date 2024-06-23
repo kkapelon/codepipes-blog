@@ -437,7 +437,7 @@ Code coverage is a favorite metric among software stakeholders. [Endless discuss
 
 The reason why everybody likes to talk about code coverage is because it is a metric that is easy to understand and quantify. There are several easily accessible tools that output this metric for most programming languages and test frameworks. 
 
-*Let me tell you a little secret:* Code coverage is completely useless as a metric. There is no "correct" code coverage number. This is a trap question. You can have a project with 100% code coverage that still has bugs and problems. The real metrics
+*Let me tell you a little secret:* Code coverage is completely useless as a metric. There is no "correct" code coverage number. This is a trap question. [You can have a project with 100% code coverage that still has bugs and problems]({{site.baseurl }}/testing/code-coverage.html). The real metrics
 that you should monitor are the well-known CTM. 
 
 ##### The Codepipes Testing Metrics (CTM)
