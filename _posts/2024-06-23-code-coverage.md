@@ -32,7 +32,7 @@ And after running the tests I see that I have achieved the holy grail - 100% cod
 
 ![Achieving 100% code coverage](../../assets/code-coverage/coverage.png)
 
-I go to bed and then next morning I see the news about the rocket explosion. Apparently this 
+I go to bed and the next morning I see the news about the rocket explosion. Apparently this 
 function has a bug and if the direction is double the angle, the function throws a divide-by-zero error.
 
 So if for example direction is 4 and angle is 2 the rocket explodes:
@@ -55,7 +55,7 @@ A. From my business analyst, or my QA engineer or my buddy Fred. Does it really 
 is that I had 100% code coverage with them.
 
 Q. Of course it matters. As soon as I saw your method I thought about the error and I would write a unit test for that. Your QA engineer missed that case.  
-A. Sure you can do that for 1 line of code. But you can do it for 5? for 500? for 50,000? If yes, then you have a superhuman ability and a) I want to hire you b) no need to write unit tests any more. Just fix the code right away if you can spot all bugs or a system.
+A. Sure you can do that for 1 line of code. But you can do it for 5? for 500? for 50,000? If yes, then you have a superhuman ability and a) I want to hire you b) no need to write unit tests any more. Just fix the code right away if you can spot all bugs of a system.
 
 Q. So you are saying that unit tests are useless?  
 A. No, of course not. Tests are great for catching regressions or functioning as written specifications. All I am saying is that trying to increase code coverage in order to have less bugs is a misconception.
