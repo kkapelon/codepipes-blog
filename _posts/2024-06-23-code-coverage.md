@@ -63,9 +63,8 @@ A. No, of course not. Tests are great for catching regressions or functioning as
 Q. So if code coverage is not a good metric for the quality of the project, what metrics should I look instead ?  
 A. I have proposed the useful but largely unknown metrics `PDWT`,`PBCNT`,`PTVB`,`PTD` in [my testing guide]({{site.baseurl }}/testing/software-testing-antipatterns.html#anti-pattern-6---paying-excessive-attention-to-test-coverage).
 
-
 Q. So what should I do if I want less bugs on my mission critical software?  
-A. You should look at other approaches such as [formal verification](https://en.wikipedia.org/wiki/Formal_verification) and [proof checkers](https://en.wikipedia.org/wiki/Proof_assistant).
+A. You should look at other approaches such as [formal verification](https://en.wikipedia.org/wiki/Formal_verification) and [proof checkers](https://en.wikipedia.org/wiki/Proof_assistant). Check also [Mutation Testing](https://en.wikipedia.org/wiki/Mutation_testing)
 
 Q. Look, this is great, but I still need to find the perfect code coverage for my new project. If it is not 100%, what should I aim for?  
 A. Without more context on your project all I can say is that the minimum code coverage is 20%. This number is based on the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle) and assumes that 20% of your code is responsible for 80% of your bugs. See also my point about "critical code" in [my testing guide]({{site.baseurl }}/testing/software-testing-antipatterns.html#anti-pattern-4---testing-the-wrong-functionality).
