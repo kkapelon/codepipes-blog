@@ -45,7 +45,7 @@ So there you have it. **Right in front on your eyes there is an application with
 
 Achieving 100% therefore says nothing about your software quality. And by induction assuming that going from 90% to 100% will magically solve all bugs is also not correct. 
 
-## FAQ
+## F.A.Q.
 
 Q. This article is useless. Everybody knows that 100% code coverage doesn't eliminate bugs.  
 A. Junior developers [certainly don't know this](https://xkcd.com/1053/). Misguided team managers don't know it as well. Several articles that I am not going to link, also advocate for 100% code coverage. I actually wrote this article, because now I can give everybody the link instead of showing the same example again and again.
@@ -64,7 +64,7 @@ Q. So if code coverage is not a good metric for the quality of the project, what
 A. I have proposed the useful but largely unknown metrics `PDWT`,`PBCNT`,`PTVB`,`PTD` in [my testing guide]({{site.baseurl }}/testing/software-testing-antipatterns.html#anti-pattern-6---paying-excessive-attention-to-test-coverage).
 
 Q. So what should I do if I want less bugs on my mission critical software?  
-A. You should look at other approaches such as [formal verification](https://en.wikipedia.org/wiki/Formal_verification) and [proof checkers](https://en.wikipedia.org/wiki/Proof_assistant). Check also [Mutation Testing](https://en.wikipedia.org/wiki/Mutation_testing)
+A. You should look at other approaches such as [formal verification](https://en.wikipedia.org/wiki/Formal_verification) and [proof checkers](https://en.wikipedia.org/wiki/Proof_assistant). Check also [Mutation Testing](https://en.wikipedia.org/wiki/Mutation_testing).
 
 Q. Look, this is great, but I still need to find the perfect code coverage for my new project. If it is not 100%, what should I aim for?  
 A. Without more context on your project all I can say is that the minimum code coverage is 20%. This number is based on the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle) and assumes that 20% of your code is responsible for 80% of your bugs. See also my point about "critical code" in [my testing guide]({{site.baseurl }}/testing/software-testing-antipatterns.html#anti-pattern-4---testing-the-wrong-functionality).
