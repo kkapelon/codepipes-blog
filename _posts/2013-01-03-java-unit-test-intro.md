@@ -170,3 +170,30 @@ In this imaginary scenario, the business analyst knew that the e-shop also sells
 Let’s jump forward a year. Sara, a new developer, comes into the team and begins working on the shipping module of the e-shop using a complex algorithm for a new country. Her algorithm sometimes doesn’t work because “weight = 0″. The deadline is near.
 
 In order to solve this last minute problem she finds the BasketWeightCalculator class and thinking that nothing will break, she changes it to:
+
+```java
+	/*
+	 * Feature request BWC-356. Weight can
+	 * never be negative
+	 */
+	if(totalWeight < 0)
+	{
+		totalWeight = 1;
+	}
+```	
+
+This small change can have many side effects. A cursory glance might lead you to believe that this is logical, since weight can never be zero in real life. But there is little time to actually check the feature request marked BWC-356, and these specifications might not even be present in the original state.
+
+So Sara happily commits the code, and the new module works perfectly. The updated version goes into production, but then two days later the shipping company calls the e-shop company with alarming news: Their system is down because it has been overwhelmed by shipping orders for downloadable goods (which of course they cannot ship) with “Weight 1”.
+
+Actually, this outcome should not have happened in the first place.
+
+Even if Sara had no time to actually check the specs, she should have been instructed to run all the unit tests before committing her code (a very good practice you should also embrace). If this had occurred, then the tests would have failed, especially the test that checks if weight = 0.
+
+Thus the Big Red Bar in the unit test results should act as a warning signal to any developer that something is wrong. Small changes might not be as trivial as originally thought. As we will see in a later post of the series, unit tests should also execute automatically in the build server.
+
+## Closing remarks
+
+We hope that you have enjoyed learning a little about the usefulness of unit tests and why they are crucial for ensuring that you can deliver quality apps to your end users. Using our examples provided, you can make your own unit tests to make sure your code meets expectations, and follow these simple steps to catch regressions when shipping code into production.
+
+In future articles, we’ll look to cover things like what parts you need to select for testing in a big enterprise application, what is a good unit testing code coverage and some advanced JUnit techniques. 
