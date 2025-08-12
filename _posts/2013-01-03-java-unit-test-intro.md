@@ -122,3 +122,51 @@ Now you can save this file in your source folder and since we are using Eclipse 
 ![Unit test success](../../assets/java-unit-test-intro/first-success.png)
 
 Congratulations! Everything seems to be in order, and your code is matching expectations.
+
+## Feature-driven unit testing
+
+One of the most important requirements for unit tests is that they should always reflect the current state of the code. Unit tests should be considered from the end user perspective and driven by the features required by your customers.
+
+Imagine, for example, your squash buddy from Business Analysis comes over and says that because this method calculates weights, it should never return negative numbers. That seems right!
+
+Therefore, the specifications of the e-shop are updated, and developers must also update the code. But since we are running unit tests, let’s first write the test before the actual code is implemented (this is also known as test driven development). Here is the test:
+
+```java
+/** Feature request BWC-356. Weight can never be negative */ 
+@Test
+public void neverNegativeWeigth() {
+  BasketWeightCalculator weightCalculator = new BasketWeightCalculator();
+  weightCalculator.addItem(5);
+  weightCalculator.addItem(-13);
+ 
+  assertEquals("Expected 0",0 ,weightCalculator.getTotalWeight());
+}
+```
+
+If you run it again with your IDE, not only the test will fail, but you will also see why it failed.
+
+![Test fails](../../assets/java-unit-test-intro/test-fails.png)
+
+This is natural because the implementation code is missing. So, let’s add to the class the following code:
+
+```java
+public void addItem( int itemWeight)
+{
+  totalWeight = totalWeight + itemWeight;
+ 
+  /* Feature request BWC-356. Weight can never be negative */  
+  if(totalWeight < 0) { totalWeight = 0; }
+}
+```
+
+And now you can sit back and watch your test pass!
+
+![Test pass](../../assets/java-unit-test-intro/test-pass.png)
+
+## Unit tests as warning signals
+
+In this imaginary scenario, the business analyst knew that the e-shop also sells virtual goods. For logistical reasons, the weight CAN also be zero. This is defined in the specifications.
+
+Let’s jump forward a year. Sara, a new developer, comes into the team and begins working on the shipping module of the e-shop using a complex algorithm for a new country. Her algorithm sometimes doesn’t work because “weight = 0″. The deadline is near.
+
+In order to solve this last minute problem she finds the BasketWeightCalculator class and thinking that nothing will break, she changes it to:
