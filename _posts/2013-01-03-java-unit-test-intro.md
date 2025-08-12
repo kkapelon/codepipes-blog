@@ -53,18 +53,17 @@ For the sake of this example, let’s say that the “Enterprise Product” is a
 
 ```java
 public class BasketWeightCalculator {
- 
-	private int totalWeight = 0;
- 
-	public void addItem( int itemWeight) //Assume weight is always an integer number
-	{
-		totalWeight = totalWeight + itemWeight;
-	}
- 
-	public int getTotalWeight() {
-		return totalWeight;
-	}
- 
+
+    private int totalWeight = 0;
+
+    public void addItem(int itemWeight) // Assume weight is always an integer number
+    {
+        totalWeight = totalWeight + itemWeight;
+    }
+
+    public int getTotalWeight() {
+        return totalWeight;
+    }
 }
 ```
 
@@ -76,37 +75,37 @@ We expect the weight of the basket to be just the sum. But let’s think of a mo
 
 ```java
 public class BasketWeightTest {
- 
-	@Test
-	public void oneItem() {
-		BasketWeightCalculator weightCalculator = new BasketWeightCalculator();
-		weightCalculator.addItem(5);
- 
-		assertEquals("Expected 5",5 ,weightCalculator.getTotalWeight());
-	}
- 
-	@Test
-	public void twoItems() {
-		BasketWeightCalculator weightCalculator = new BasketWeightCalculator();
-		weightCalculator.addItem(5);
-		weightCalculator.addItem(13);
- 
-		assertEquals("Expected 18",18 ,weightCalculator.getTotalWeight());
-	}
- 
-	@Test
-	public void orderDoesNotMatter() {
-		BasketWeightCalculator weightCalculator1 = new BasketWeightCalculator();
-		weightCalculator1.addItem(5);
-		weightCalculator1.addItem(13);
- 
-		BasketWeightCalculator weightCalculator2 = new BasketWeightCalculator();
-		weightCalculator2.addItem(13);
-		weightCalculator2.addItem(5);
- 
-		assertEquals("Expected 18",18 ,weightCalculator1.getTotalWeight());
-		assertEquals("Expected 18",18 ,weightCalculator2.getTotalWeight());
-	}
+
+    @Test
+    public void oneItem() {
+        BasketWeightCalculator weightCalculator = new BasketWeightCalculator();
+        weightCalculator.addItem(5);
+
+        assertEquals("Expected 5", 5, weightCalculator.getTotalWeight());
+    }
+
+    @Test
+    public void twoItems() {
+        BasketWeightCalculator weightCalculator = new BasketWeightCalculator();
+        weightCalculator.addItem(5);
+        weightCalculator.addItem(13);
+
+        assertEquals("Expected 18", 18, weightCalculator.getTotalWeight());
+    }
+
+    @Test
+    public void orderDoesNotMatter() {
+        BasketWeightCalculator weightCalculator1 = new BasketWeightCalculator();
+        weightCalculator1.addItem(5);
+        weightCalculator1.addItem(13);
+
+        BasketWeightCalculator weightCalculator2 = new BasketWeightCalculator();
+        weightCalculator2.addItem(13);
+        weightCalculator2.addItem(5);
+
+        assertEquals("Expected 18", 18, weightCalculator1.getTotalWeight());
+        assertEquals("Expected 18", 18, weightCalculator2.getTotalWeight());
+    }
 }
 ```
 
