@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Don’t Test Blindly: The Right Methods for Unit Testing Your Java Apps
+title: Don’t Test Blindly - The Right Methods for Unit Testing Your Java Apps
 category: testing
 ---
 
