@@ -84,38 +84,38 @@ Assume that you have already implemented a class that checks the validity for UR
 ```java
 public class MyUriValidatorTest {
 
-	@Test
-	public void test1() {
-		MyUriValidator myValidator = new MyUriValidator();
-		myValidator.allowFileUrls(true);
-		myValidator.allowInternationlizedDomains(false);
-		myValidator.allowReservedDomains(false);
-		myValidator.allowCustomPorts(true);
+  @Test
+  public void test1() {
+    MyUriValidator myValidator = new MyUriValidator();
+    myValidator.allowFileUrls(true);
+    myValidator.allowInternationlizedDomains(false);
+    myValidator.allowReservedDomains(false);
+    myValidator.allowCustomPorts(true);
 
-		assertTrue("Domain is valid",myValidator.isValidUrl("http://www.google.com"));
-	}
+    assertTrue("Domain is valid",myValidator.isValidUrl("http://www.google.com"));
+  }
 
-	@Test
-	public void test2() {
-		MyUriValidator myValidator = new MyUriValidator();
-		myValidator.allowFileUrls(true);
-		myValidator.allowInternationlizedDomains(false);
-		myValidator.allowReservedDomains(false);
-		myValidator.allowCustomPorts(true);
+  @Test
+  public void test2() {
+    MyUriValidator myValidator = new MyUriValidator();
+    myValidator.allowFileUrls(true);
+    myValidator.allowInternationlizedDomains(false);
+    myValidator.allowReservedDomains(false);
+    myValidator.allowCustomPorts(true);
 
-		assertTrue("Domain is valid",myValidator.isValidUrl("file://home/users"));
-	}
+    assertTrue("Domain is valid",myValidator.isValidUrl("file://home/users"));
+  }
 
-	@Test
-	public void test3() {
-		MyUriValidator myValidator = new MyUriValidator();
-		myValidator.allowFileUrls(true);
-		myValidator.allowInternationlizedDomains(false);
-		myValidator.allowReservedDomains(false);
-		myValidator.allowCustomPorts(true);
+  @Test
+  public void test3() {
+    MyUriValidator myValidator = new MyUriValidator();
+    myValidator.allowFileUrls(true);
+    myValidator.allowInternationlizedDomains(false);
+    myValidator.allowReservedDomains(false);
+    myValidator.allowCustomPorts(true);
 
-		assertFalse("Domain is invalid",myValidator.isValidUrl("http://localhost:8080/"));
-	}
+    assertFalse("Domain is invalid",myValidator.isValidUrl("http://localhost:8080/"));
+  }
 }
 ```
 
@@ -124,34 +124,34 @@ There is clearly a lot of code of duplication here. JUnit has a [@Before annotat
 ```java
 public class MyUriValidatorTest {
 
-	private MyUriValidator myValidator = null;
+  private MyUriValidator myValidator = null;
 
-	@Before
-	public void beforeEachTest() { //Name of method does not actually matter
-		myValidator = new MyUriValidator();
-		myValidator.allowFileUrls(true);
-		myValidator.allowInternationlizedDomains(false);
-		myValidator.allowReservedDomains(false);
-		myValidator.allowCustomPorts(true);
-	}
+  @Before
+  public void beforeEachTest() { //Name of method does not actually matter
+    myValidator = new MyUriValidator();
+    myValidator.allowFileUrls(true);
+    myValidator.allowInternationlizedDomains(false);
+    myValidator.allowReservedDomains(false);
+    myValidator.allowCustomPorts(true);
+  }
 
-	@Test
-	public void test1() {
-		assertTrue("Domain is valid",
-				myValidator.isValidUrl("http://www.google.com"));
-	}
+  @Test
+  public void test1() {
+    assertTrue("Domain is valid",
+        myValidator.isValidUrl("http://www.google.com"));
+  }
 
-	@Test
-	public void test2() {
-		assertTrue("Domain is valid",
-				myValidator.isValidUrl("file://home/users"));
-	}
+  @Test
+  public void test2() {
+    assertTrue("Domain is valid",
+        myValidator.isValidUrl("file://home/users"));
+  }
 
-	@Test
-	public void test3() {
-		assertFalse("Domain is invalid",
-				myValidator.isValidUrl("http://localhost:8080/"));
-	}
+  @Test
+  public void test3() {
+    assertFalse("Domain is invalid",
+        myValidator.isValidUrl("http://localhost:8080/"));
+  }
 
 }
 ```
@@ -166,41 +166,41 @@ Here is this approach for that:
 @RunWith(Parameterized.class)
 public class MyUriValidatorTest {
 
-	private MyUriValidator myValidator = null;
-	private String uriTestedNow =null;
-	private boolean expectedResult = false;
+  private MyUriValidator myValidator = null;
+  private String uriTestedNow =null;
+  private boolean expectedResult = false;
 
-	public MyUriValidatorTest(String uriTestedNow,boolean expectedResult)
-	{
-		this.uriTestedNow = uriTestedNow;
-		this.expectedResult = expectedResult;
-	}
+  public MyUriValidatorTest(String uriTestedNow,boolean expectedResult)
+  {
+    this.uriTestedNow = uriTestedNow;
+    this.expectedResult = expectedResult;
+  }
 
-	@Parameters
-        public static Collection data() {
-    	/* First element is the URI, second is the expected result */
-    	 List uriToBeTested =  Arrays.asList(new Object[][] {
-                            {  "http://www.google.com", true }, 
-                            	{ "file://home/users", true }, 
-                         	{ "http://staging:8080/sample", true },
-                            	{"http://localhost:8080/", false }  });
+  @Parameters
+  public static Collection data() {
+    /* First element is the URI, second is the expected result */
+     List uriToBeTested =  Arrays.asList(new Object[][] {
+                        {  "http://www.google.com", true }, 
+                          { "file://home/users", true }, 
+                        { "http://staging:8080/sample", true },
+                          {"http://localhost:8080/", false }  });
 
-    	 return uriToBeTested;
-    }
+     return uriToBeTested;
+  }
 
-	@Before
-	public void beforeEachTest() {
-		myValidator = new MyUriValidator();
-		myValidator.allowFileUrls(true);
-		myValidator.allowInternationlizedDomains(false);
-		myValidator.allowReservedDomains(false);
-		myValidator.allowCustomPorts(true);
-	}
+  @Before
+  public void beforeEachTest() {
+    myValidator = new MyUriValidator();
+    myValidator.allowFileUrls(true);
+    myValidator.allowInternationlizedDomains(false);
+    myValidator.allowReservedDomains(false);
+    myValidator.allowCustomPorts(true);
+  }
 
-	@Test
-	public void testCurrentUri() {
-		assertEquals("Testing for "+uriTestedNow, expectedResult,myValidator.isValidUrl(uriTestedNow));
-	}
+  @Test
+  public void testCurrentUri() {
+    assertEquals("Testing for "+uriTestedNow, expectedResult,myValidator.isValidUrl(uriTestedNow));
+  }
 
 }
 ```
@@ -214,4 +214,4 @@ For even more advanced capabilities check out [TestNG](https://testng.org/) whic
 
 In this post we offered you some hints on which code you should test and which you should ignore. We also introduced the notion of code coverage and gave our recommendation for how much of the total code you should deal with. From the final example you should also see that investing some time in learning how to properly utilize unit testing features with JUnit, or if you feel more adventurous, TestNG, is highly recommended.
 
-In future posts, we will look at how to write testable code (so that the unit tests you prepare to cover it are easier to write), the concept of mocking and when we need to use it. 
+In future posts, we will look at how to write testable code (so that the unit tests you prepare to cover it are easier to write), the concept of mocking and when we need to use it.
