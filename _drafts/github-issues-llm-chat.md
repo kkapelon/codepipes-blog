@@ -63,12 +63,15 @@ Common examples are:
 
 The last case is critical and it is the one that made me write the present article. 
 
-If your PR changes existing tests (i.e. not the ones you added for the new feature) it means that
+If your PR changes existing tests (i.e. not the ones you added for the new feature) it means that:
 
 1. You changed the previous behavior of the application
-1. You just introduced a breaking change for existing users.
+1. You just introduced a breaking change for existing users. Oops!
 
 For a human developer, this distinction is pretty obvious. But for an LLM (at least at the time of writing) things are not that simple.
+
+I hear all the time that LLMs will soon (or already do) produce code which will be merged
+straight away without any human supervision and I keep asking myself how can this be possible with the current models that we have at our disposal. How many PRs that look good on paper, but are doing something else entirely have already been merged in production code?
 
 ## The human factor - 
 
