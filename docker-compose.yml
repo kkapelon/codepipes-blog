@@ -1,6 +1,6 @@
 services:
   site:
-    command: jekyll serve --incremental
+    command: jekyll serve --incremental --drafts
     image: jekyll/jekyll:3.8.3
     volumes:
       - ./:/srv/jekyll
