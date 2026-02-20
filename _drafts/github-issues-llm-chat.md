@@ -78,7 +78,7 @@ straight away without any human supervision and I keep asking myself how can thi
 Finally we have the human factor aspect for this trend. If you already know that what you say in a GitHub PR will be copied-pasted straight into an LLM chat, you start helping the contributor by posting "ready-to-prompt" responses.
 
 I know what you are thinking. Somebody else is paying for tokens so I am free to say whatever I want in the PR, and the LLM on the other side will just fix/change the PR according to my commands. I just
-outsourced the code for LLM development to somebody else while still getting all the benefits for my open source project! Amazing price-to-value ration!
+outsourced the code for LLM development to somebody else while still getting all the benefits for my open source project! Amazing price-to-value ratio!
 
 Well not so fast. First of all, responding with "ready-to-prompt" comments on PR makes me miserable. I don't want to use PR comments for LLM prompts. The process is too slow and it forces to repeat myself a lot.
 
@@ -86,6 +86,9 @@ Because you don't know exactly how the contributor is managing context, you need
 
 * "Please don't change existing tests"
 * "Please create a test that actually verifies what the PR is implementing"
+* "Linting has failed. PR will not be merged until you fix it"
+
+
 
 
 ## Solutions
