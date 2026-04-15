@@ -59,7 +59,42 @@ This is probably the most common problem with your Pull requests. If you don't g
 
 ### Your PR doesn't have tests
 
+Most open source projects have a testing policy. They will either reject code that doesn't have tests or reject code that is not tested enough (by looking at code coverage). Make sure that your PR also includes tests.
+
+A classic mistake is creating a test with your AI agent after the feature has been implemented. This means that your agent *thinks* that this test verifies the new feature. To be certain you can actually do the opposite
+
+1. Ask your agent to create the test first
+2. Run it and see if fail
+3. Ask the agent to implement the feature
+4. Run the test and see it succeed
+
+Read about [Test Driven Development](en.wikipedia.org/wiki/Test-driven_development).
+
+Alternatively you could also comment out yourself the code that implements the test and see if fail, if your created the test after the feature was already implemented.
+
+I have personally seen PRs where the tests do not actually verify the feature the associated code is implementing. This is one of the biggest red flags for you when an open source maintainer is going to review your PR. It is one of the fastest ways to lose your credibility with any project.
+
 ### You implemented the wrong type of tests
+
+A related problem is when your tests are in the wrong place. Most projects have different types of tests.
+
+1. Unit/fast/method tests
+2. Slow/component/e2e/integration tests
+3. UI/Functional tests for projects that also have a graphical interface
+
+See the first 3 points on my [testing guide](blog.codepipes.com/testing/software-testing-antipatterns.html) if you want to know about these categories.
+
+Component and end-to-end (e2e) are more difficult to setup and run. Your AI agent will probably
+default on creating the simple (unit tests) if not guided correctly.
+
+Don't be alarmed if the open source maintainer says that you need an e2e test as well. It probably
+means that your feature cannot be covered by just unit tests.
+
+On the other hand, not every new feature needs e2e tests. Try to undestand what your feature needs.
+Talk with your agent to learn more behind the reasoning.
+
+Remember: when submitting a PR you should always be ready to explain *why* something was done this way.
+
 
 ### Your PR breaks existing functionality
 
