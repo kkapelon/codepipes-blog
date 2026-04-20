@@ -38,7 +38,7 @@ Let's focus first on the initial creation of the PR.
 
 Ideally, an issue should already exist for the code you're contributing. **Don't just submit a PR out of the blue.** Issues are great for discussions, and you can get early feedback from the maintainers. It will save you (and them) a lot of time (and tokens) if you know beforehand that your contribution is relevant to the project.
 
-Several times there are multiple open GitHub issues at the same code area. Understand if they are duplicates or different issues. If what you are trying to implement has already been discussed before make sure to pass the discussions/PRs to you AI agent as well.
+Several times there are multiple open GitHub issues at the same code area. Understand if they are duplicates or different issues. If what you are trying to implement has already been discussed before make sure to pass the discussions/PRs to your AI agent as well.
 
 ### Understand the project policy against LLM contributions
 
@@ -52,7 +52,7 @@ Several projects already have an `AGENTS` or `CLAUDE` file. For those that don't
 
 Example prompt:
 
- > Read docs/contributing.md to understand how e2e tests works. Run all e2e tests for feature "x" locally first so that we can see how they behave before making any further changes
+ > Read docs/contributing.md to understand how e2e tests work. Run all e2e tests for feature "x" locally first so that we can see how they behave before making any further changes
 
 When you think you are finished with your Pull Request again, double check that it conforms to contribution guides. Some projects also have a [PR template](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) that you can use to verify if your contribution covers the basics.
 
@@ -93,7 +93,7 @@ A classic mistake is creating a test with your AI agent *after* the feature has 
 
 Read more about [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development).
 
-Alternatively you could also comment out yourself the code that implements the test and see if it fails, if you created the test after the feature was already implemented.
+Alternatively, you could also comment out the code yourself that implements the test and see if it fails, if you created the test after the feature was already implemented.
 
 I have personally seen PRs where the tests do not actually verify the feature the associated code is implementing. This is one of the biggest red flags for you when an open source maintainer is going to review your PR. It is one of the fastest ways to lose your credibility with any project.
 
@@ -122,13 +122,13 @@ Remember: when submitting a PR you should always be ready to explain *why* somet
 
 ### Your PR breaks existing functionality
 
-Another common issue with AI agents, is that they do not understand the impact of their changes. A lot of "guides" explain how you can use an agent in a testing loop where implementing a feature is done when the tests pass correctly. The problem is that making something work by fixing the code is very different than fixing the test. 
+Another common issue with AI agents is that they do not understand the impact of their changes. A lot of "guides" explain how you can use an agent in a testing loop where implementing a feature is done when the tests pass correctly. The problem is that making something work by fixing the code is very different than fixing the test. 
 
 It is your responsibility as a human to understand if your PR:
 
 * is only implementing brand new functionality that doesn't break anything for existing users
 * it fixes a bug (and test) for something that never worked correctly in the first place
-* it updates (and possible breaks) an existing workflow but this has already been discussed in an GitHub issue and maintainers approve the change.
+* it updates (and possibly breaks) an existing workflow but this has already been discussed in a GitHub issue and maintainers approve the change.
 
 
 Example prompt:
@@ -143,7 +143,7 @@ breaks current functionality for existing users, maintainers will reject it with
 
 This is a sub case of the previous problem. Unit tests function as runnable specification for a project. Every time your AI agent is updating an existing test, **you are changing expected behavior for current users**. Changing an existing test means changing the specifications.
 
-When you submit a PR you should know the impact of changing existing tests. Don't just blindly let your agent change existing tests just to make a feature "pass". Do some planing to understand *why* the test must change and if it is better to implement something more in the code to keep the existing
+When you submit a PR you should know the impact of changing existing tests. Don't just blindly let your agent change existing tests just to make a feature "pass". Do some planning to understand *why* the test must change and if it is better to implement something more in the code to keep the existing
 test as is.
 
 ### You missed corner cases and racing conditions
