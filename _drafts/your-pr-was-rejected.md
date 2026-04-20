@@ -36,7 +36,9 @@ result in a lengthy discussion about the code quality.
 
 Let's focus first on the initial creation of the PR.
 
-Ideally an issue there should already exist for the code you are contributing. **Don't just submit a PR out of the blue.** Issues are great for discussions, and you can get early feedback from the maintainers. It will save you (and them) a lot of time (and tokens) if you know beforehand that your contribution is relevant to the project.
+Ideally, an issue should already exist for the code you're contributing. **Don't just submit a PR out of the blue.** Issues are great for discussions, and you can get early feedback from the maintainers. It will save you (and them) a lot of time (and tokens) if you know beforehand that your contribution is relevant to the project.
+
+Several times there are multiple open GitHub issues at the same code area. Understand if they are duplicates or different issues. If what you are trying to implement has already been discussed before make sure to pass the discussions/PRs to you AI agent as well.
 
 ### Understand the project policy against LLM contributions
 
@@ -48,13 +50,17 @@ Several projects already have an `AGENTS` or `CLAUDE` file. For those that don't
 
 **Make sure that your LLM is aware of all this content every time.** Verify that in each session, this information is always passed to the LLM either as an explicit directive or via the context mechanism your favorite agent uses.
 
+Example prompt:
+
+ > Read docs/contributing.md to understand how e2e tests works. Run all e2e tests for feature "x" locally first so that we can see how they behave before making any further changes
+
 When you think you are finished with your Pull Request again, double check that it conforms to contribution guides. Some projects also have a [PR template](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) that you can use to verify if your contribution covers the basics.
 
 ### Your PR doesn't actually solve what it is supposed to implement
 
 This might sound basic, but it happens. If you are submitting a PR against an existing issue, make sure that it solves that issue alone. Nothing more and nothing less.
 
-Several times new contributors try to bundle multiple fixes in the same PR. This makes code reviews very difficult on behalf of the maintainers. LLMs can also get carried away and try to sneak into a PR other refactorings or minor features that should be handled in a different PR.
+Several times, new contributors try to bundle multiple fixes into the same PR. This makes code reviews very difficult for maintainers. LLMs can also get carried away and try to sneak into a PR other refactorings or minor features that should be handled in a different PR.
 
 Try to contain your LLM to a single feature at a time. If you want to do major refactorings open a different issue and ideally ask for feedback from the maintainers **BEFORE** you submit a PR.
 
@@ -105,6 +111,10 @@ Component and end-to-end (e2e) tests are more difficult to set up and run. Your 
 
 Don't be alarmed if the open source maintainer says that you need an e2e test as well. It probably means that your feature cannot be covered by just unit tests.
 
+Example prompt:
+
+ > Read the e2e tests at folder "x" and locate those that do not test just business logic but check other concerns such as transactions, locking or concurrency issues. Implement a similar test for feature "y" if required.
+
 On the other hand, not every new feature needs e2e tests. Try to understand what your feature needs. Talk with your agent to learn more about the reasoning.
 
 Remember: when submitting a PR you should always be ready to explain *why* something was done this way.
@@ -119,6 +129,11 @@ It is your responsibility as a human to understand if your PR:
 * is only implementing brand new functionality that doesn't break anything for existing users
 * it fixes a bug (and test) for something that never worked correctly in the first place
 * it updates (and possible breaks) an existing workflow but this has already been discussed in an GitHub issue and maintainers approve the change.
+
+
+Example prompt:
+
+ > What happens with existing users of version "x" if feature "y" is implemented? Does it break existing functionality for them?
 
 For most open source projects, backwards compatibility is paramount. This means that even if your PR is perfect on a technical level, but 
 breaks current functionality for existing users, maintainers will reject it without some kind of migration plan or documentation warning.
@@ -138,14 +153,18 @@ feature, but they often forget about the "boring" stuff that is required such as
 
 For established open source projects, creating a feature that works in 80% of the cases is easy. The problem is getting to 95% or even 100% for all users. If you want to implement a major new feature you need to understand the history of the project, the common guidelines and the code hot-spots that will affect your Pull Request.
 
-Again, planning mode is your friend here. Guide your agent to look not only at the public documentation of the project, but also at existing issues and Pull requests (even closed ones). The worst thing you can do is to create a PR that resurfaces an old issues or misses a very obvious use case (see also the previous section about backwards compatibility).
+Again, planning mode is your friend here. Guide your agent to look not only at the public documentation of the project, but also at existing issues and Pull Requests (even closed ones). The worst thing you can do is create a PR that resurfaces an old issue or misses a very obvious use case (see also the previous section about backwards compatibility).
+
+Example prompt:
+
+ > What happens if two requests that do "x" arrive at the same time? What happens if multiple users do "y" at the same time? Does the code address the scenario when "z" structure/db/array is read and written at the same time?
 
 Be ready to answer questions of concurrency, multi-tenancy, performance and other tricky parts that affect this open source project.
-If the maintainer starts asking questions about these topics on the PR it means that you never addressed them correctly in the initial submission.
+If the maintainer starts asking questions about these topics on the PR, it means that you never addressed them correctly in the initial submission.
 
 ## Part 2 - Getting feedback after code review
 
-Ok, so let's say you followed my advice and you submitted a clean, minimal, tested and well designed PR to your favorite open source project that follows all existing guidelines. 
+Okay, so let's say you followed my advice and submitted a clean, minimal, tested, and well-designed PR to your favorite open source project that follows all existing guidelines.
 
 In an ideal world the maintainer would be impressed with your technical skills and instantly merge your PR to the main branch of the project. Congrats! You are now an open source contributor.
 
@@ -168,21 +187,21 @@ If you simply paste your agent output on the GitHub issue
 * I am not learning anything new myself by hearing a new perspective. I could also paste my own question on my own agent if I really wanted to do that. (hint: most times I might have done this already)
 * you show me another red flag that you don't really know what you are doing.
 
-It is ok to ask an agent for extra clarifications and do code research when you don't understand something. But I expect you to understand my comment and formulate an answer that convinces me that you know what you are doing.
+It is okay to ask an agent for extra clarifications and do code research when you don't understand something. But I expect you to understand my comment and formulate an answer that convinces me you know what you are doing.
 
 I cannot speak for all open source developers, but at least for me if you admit that you don't know
 how something works and ask for guidance, it actually motivates me to help you.
 
 ### Continue working on the PR with the correct context
 
-If your PR gets several comments about different areas of the code, the maintainer expects that something that is fixed/addressed will stay fixed/addressed until the end.
+If your PR gets several comments about different areas of the code, the maintainer expects that anything fixed or addressed will stay fixed or addressed through the end.
 
 Here is one of the worst ways to address maintainer feedback
 
 1. The maintainer posts comments about two different topics/areas
 1. You fix topic A
 1. There is discussion about how to fix topic B
-1. You fix topic B and break A again.
+1. You fix topic B and break A again
 
 Not only is this clear evidence that you are using an AI agent, but it is also a big red flag that you don't understand how context works. At this point, I am seriously thinking about rejecting the PR altogether because it shows to me that you are missing basic LLM foundations before even talking about the business logic of the code itself.
 
@@ -210,20 +229,19 @@ Let's say a maintainer has 3 points of feedback on your PR
 1. You add another question for point 2
 1. They answer for point 2
 1. You implement point 2 and ping them again
-1. The add another comment for point 2
+1. They add another comment for point 2
 1. You leave point 2 and fix point 3 (and ping) them
 1. They come to look at the PR and your fix of point 3 also broke something in point 1
 
 **Don't do this**. It wastes time for both parties and makes the whole discussion difficult for anybody to follow.
 
-This is also a red flag because it shows that you just enter each individual point to your AI agent instead of presenting a wholistic solution (see also the previous point about context).
+This is also a red flag because it shows you just enter each individual point into your AI agent instead of presenting a holistic solution (see also the previous point about context).
 
 ## Moving forward
 
-I hope that this guide has given you some idea on how open source developers think and how you 
-can improve your open source contributions.
+I hope this guide has given you some idea of how open source developers think and how you can improve your open source contributions.
 
-At the time of writing, all popular open source projects are suffering from AI Slop Pull Requests that waste their own time (and also tokens). So if by reading this guide you yourself are not a part of this problem anymore, I consider it a great win for the whole community.
+At the time of writing, all popular open source projects are suffering from AI Slop Pull Requests that waste their own time (and also tokens). If, by reading this guide, you are no longer part of this problem, I consider that a great win for the whole community.
 
 
 
