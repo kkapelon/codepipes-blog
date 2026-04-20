@@ -17,18 +17,18 @@ So if you really want to become a proper open source contributor, read on.
 ## Part 0 - time is the ultimate constraint
 
 The name of the game is *Time*. Open source maintainers are always short of time. And the more popular an open source project is the more time constrained the maintainers will be.
-Maintainers who are faced with several open Pull Request will work according to the obvious priorities
+Maintainers who are faced with several open Pull Requests will work according to the obvious priorities
 
-1. PRs that come from people that have already contributed the project and are known to create quality work
+1. PRs that come from people who have already contributed to the project and are known for creating quality work
 1. Simple and minimal PRs that are very easy to understand and evaluate
 1. PRs that implement something that has already been described extensively in a GitHub issue and the code part is just the last step
 
-When you submit a brand new PR to an open source projects, you automatically fall into the "unknown" bucket. The maintainers do not
-really know if you are a coding genius that only uses AI agents for expanding their skills or if you don't know what you are doing and you are wasting their time.
+When you submit a brand new PR to an open source project, you automatically fall into the "unknown" bucket. The maintainers do not
+really know if you are a coding genius who only uses AI agents for expanding their skills or if you don't know what you are doing and you are wasting their time.
 
 Presenting well written code that aligns with the goals of the project means that you can quickly get from the "unknown" bucket to the "known contributor bucket". 
 
-The worst thing you can do is doing the exact opposite of what existing contributors do. If you submit a huge PR that has no corresponding GitHub issue and implements a brand new approach (or even breaking change), your PR will either be rejected right away, or in the best case scenario
+The worst thing you can do is do the exact opposite of what existing contributors do. If you submit a huge PR that has no corresponding GitHub issue and implements a brand new approach (or even a breaking change), your PR will either be rejected right away, or in the best case scenario
 result in a lengthy discussion about the code quality. 
 
 
@@ -40,7 +40,7 @@ Ideally an issue there should already exist for the code you are contributing. *
 
 ### Understand the project policy against LLM contributions
 
-If the project you are trying to contribute to, simply does not accept external contributions then there is nothing you can do. Move on and try to contribute to another project. The damage is already done (by people like you), and nothing you can say in your Pull Request will convince maintainers to review or accept it.
+If the project you are trying to contribute to simply does not accept external contributions, then there is nothing you can do. Move on and try to contribute to another project. The damage is already done (by people like you), and nothing you can say in your Pull Request will convince maintainers to review or accept it.
 
 ### Prime your LLM for best practices
 
@@ -48,7 +48,7 @@ Several projects already have an `AGENTS` or `CLAUDE` file. For those that don't
 
 **Make sure that your LLM is aware of all this content every time.** Verify that in each session, this information is always passed to the LLM either as an explicit directive or via the context mechanism your favorite agent uses.
 
-When you think you are finished with your Pull Request again double check that it conforms against contribution guides. Some projects also have a [PR template](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) that you can use to verify if your contribution covers the basics.
+When you think you are finished with your Pull Request again, double check that it conforms to contribution guides. Some projects also have a [PR template](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) that you can use to verify if your contribution covers the basics.
 
 ### Your PR doesn't actually solve what it is supposed to implement
 
@@ -56,17 +56,17 @@ This might sound basic, but it happens. If you are submitting a PR against an ex
 
 Several times new contributors try to bundle multiple fixes in the same PR. This makes code reviews very difficult on behalf of the maintainers. LLMs can also get carried away and try to sneak into a PR other refactorings or minor features that should be handled in a different PR.
 
-Try to contain your LLM into a single feature at each time. If you want to do major refactorings open a different issue and ideally ask for feedback from the maintainers **BEFORE** you submit a PR.
+Try to contain your LLM to a single feature at a time. If you want to do major refactorings open a different issue and ideally ask for feedback from the maintainers **BEFORE** you submit a PR.
 
 ### Your PR created duplicated code
 
-This is probably the most common problem with your Pull requests. If you don't give enough context to your LLM, it will
+This is probably the most common problem with your Pull Requests. If you don't give enough context to your LLM, it will
 
  * miss existing methods that can be reused
  * introduce new methods that re-implement existing functionality
  * emit code that doesn't follow the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
- You can address this by passing the correct prompts. You should also use the "Plan" mode of you tool where one of the tasks it simply to examine existing code and understand what is there already.
+ You can address this by passing the correct prompts. You should also use the "Plan" mode of your tool where one of the tasks is simply to examine existing code and understand what is there already.
 
 Example prompt:
 
@@ -147,9 +147,9 @@ If the maintainer starts asking questions about these topics on the PR it means 
 
 Ok, so let's say you followed my advice and you submitted a clean, minimal, tested and well designed PR to your favorite open source project that follows all existing guidelines. 
 
-In an ideal worlds the maintainer would be impressed with your technical skills and instantly merge your PR to the main branch of the project. Congrats! You are now an open source contributor.
+In an ideal world the maintainer would be impressed with your technical skills and instantly merge your PR to the main branch of the project. Congrats! You are now an open source contributor.
 
-If you reading this guide though, it means that things are not like this and the maintainer either reject the PR right away or added additional comments.
+If you are reading this guide, though, it means that things are not like this and the maintainer either rejected the PR right away or added additional comments.
 
 ### Don't use PR comments as a relay chat
 
@@ -164,7 +164,7 @@ Believe it or not but several contributors enjoy the social aspect of open sourc
 
 If you simply paste your agent output on the GitHub issue
 
-* you dehumanize the discussion as now I  know I am speaking to your LLM and not you
+* you dehumanize the discussion as now I know I am speaking to your LLM and not you
 * I am not learning anything new myself by hearing a new perspective. I could also paste my own question on my own agent if I really wanted to do that. (hint: most times I might have done this already)
 * you show me another red flag that you don't really know what you are doing.
 
@@ -174,6 +174,22 @@ I cannot speak for all open source developers, but at least for me if you admit 
 how something works and ask for guidance, it actually motivates me to help you.
 
 ### Continue working on the PR with the correct context
+
+If your PR gets several comments about different areas of the code, the maintainer expects that something that is fixed/addressed will stay fixed/addressed until the end.
+
+Here is one of the worst ways to address maintainer feedback
+
+1. The maintainer posts comments about two different topics/areas
+1. You fix topic A
+1. There is discussion about how to fix topic B
+1. You fix topic B and break A again.
+
+Not only is this clear evidence that you are using an AI agent, but it is also a big red flag that you don't understand how context works. At this point, I am seriously thinking about rejecting the PR altogether because it shows to me that you are missing basic LLM foundations before even talking about the business logic of the code itself.
+
+I will not explain here how to manage context for your agent as there are other resources about this and it is best to consult the documentation of your specific tool.
+
+If you are trying to contribute to open source projects, and you don't know how to keep the relevant information in your agent context, you need to stop submitting PRs
+and learn your tools first.
 
 ### Group all feedback in a single session
 
@@ -187,7 +203,7 @@ You can help in a number of ways
 
 The worst thing you can do is waste their time by working with many interruptions.
 
-Let's say a maintainer has 3 points of feedback on you PR
+Let's say a maintainer has 3 points of feedback on your PR
 
 1. You only fix the first one and ping them
 1. They say that the 2 other points are not addressed yet
