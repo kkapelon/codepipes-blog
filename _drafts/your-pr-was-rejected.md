@@ -14,21 +14,39 @@ Several projects [have suffered](https://daniel.haxx.se/blog/2025/07/14/death-by
 
 So if you really want to become a proper open source contributor, read on.
 
+## Part 0 - time is the ultimate constraint
+
+The name of the game is *Time*. Open source maintainers are always short of time. And the more popular an open source project is the more time constrained the maintainers will be.
+Maintainers who are faced with several open Pull Request will work according to the obvious priorities
+
+1. PRs that come from people that have already contributed the project and are known to create quality work
+1. Simple and minimal PRs that are very easy to understand and evaluate
+1. PRs that implement something that has already been described extensively in a GitHub issue and the code part is just the last step
+
+When you submit a brand new PR to an open source projects, you automatically fall into the "unknown" bucket. The maintainers do not
+really know if you are a coding genius that only uses AI agents for expanding their skills or if you don't know what you are doing and you are wasting their time.
+
+Presenting well written code that aligns with the goals of the project means that you can quickly get from the "unknown" bucket to the "known contributor bucket". 
+
+The worst thing you can do is doing the exact opposite of what existing contributors do. If you submit a huge PR that has no corresponding GitHub issue and implements a brand new approach (or even breaking change), your PR will either be rejected right away, or in the best case scenario
+result in a lengthy discussion about the code quality. 
+
+
 ## Part 1 - Creating the Pull Request
 
 Let's focus first on the initial creation of the PR.
 
-Ideally there should already be an existing issue for the code you are contributing. **Don't just submit a PR out of the blue.** Issues are great for discussions, and you can get early feedback from the maintainers. It will save you (and them) a lot of time (and tokens) if you know beforehand that your contribution is relevant to the project.
+Ideally an issue there should already exist for the code you are contributing. **Don't just submit a PR out of the blue.** Issues are great for discussions, and you can get early feedback from the maintainers. It will save you (and them) a lot of time (and tokens) if you know beforehand that your contribution is relevant to the project.
 
 ### Understand the project policy against LLM contributions
 
-If the project you are trying to contribute to simply does not accept external contributions, then there is nothing you can do. Move on and try to contribute to another project. The damage is already done (by people like you), and nothing you can say in your Pull Request will convince maintainers to review or accept it.
+If the project you are trying to contribute to, simply does not accept external contributions then there is nothing you can do. Move on and try to contribute to another project. The damage is already done (by people like you), and nothing you can say in your Pull Request will convince maintainers to review or accept it.
 
 ### Prime your LLM for best practices
 
-Several projects already have an `AGENTS` or `CLAUDE` file. For those that don't, try to find the equivalent file that explains how to contribute to the project. This is sometimes called `contributing.md`, other times there is a separate `docs` folder that contains instructions for contributions. It might also be a subset of the `README` file. It is your duty to find this information.
+Several projects already have an `AGENTS` or `CLAUDE` file. For those that don't, try to find the equivalent file that explains how to contribute to the project. This is sometimes called `contributing.md`, other times there is a separate `docs` folder that contains instructions for contributions. It might also be a subset of the `README` file. It is your duty to find this information, read it yourself and also pass it to your agent.
 
-**Make sure that your LLM is aware of all this content.** Verify that in each session, this information is always passed to the LLM either as an explicit directive or via the context mechanism your favorite agent uses.
+**Make sure that your LLM is aware of all this content every time.** Verify that in each session, this information is always passed to the LLM either as an explicit directive or via the context mechanism your favorite agent uses.
 
 When you think you are finished with your Pull Request again double check that it conforms against contribution guides. Some projects also have a [PR template](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) that you can use to verify if your contribution covers the basics.
 
@@ -60,16 +78,16 @@ While several projects have linters in place to detect duplicate code, LLMs can 
 
 Most open source projects have a testing policy. They will either reject code that doesn't have tests or reject code that is not tested enough (by looking at code coverage). Make sure that your PR also includes tests.
 
-A classic mistake is creating a test with your AI agent after the feature has been implemented. This means that your agent *thinks* this test verifies the new feature. To be certain, you can actually do the opposite:
+A classic mistake is creating a test with your AI agent *after* the feature has been implemented. This means that your agent *thinks* this test verifies the new feature. To be certain, you should actually do the opposite:
 
 1. Ask your agent to create the test first
 2. Run it and see if it fails
 3. Ask the agent to implement the feature
-4. Run the test and see it succeed
+4. Run the test and see if it succeeds
 
-Read about [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development).
+Read more about [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development).
 
-Alternatively you could also comment out yourself the code that implements the test and see if fail, if your created the test after the feature was already implemented.
+Alternatively you could also comment out yourself the code that implements the test and see if it fails, if you created the test after the feature was already implemented.
 
 I have personally seen PRs where the tests do not actually verify the feature the associated code is implementing. This is one of the biggest red flags for you when an open source maintainer is going to review your PR. It is one of the fastest ways to lose your credibility with any project.
 
@@ -81,7 +99,7 @@ A related problem is when your tests are in the wrong place. Most projects have 
 2. Slow/component/e2e/integration tests
 3. UI/Functional tests for projects that also have a graphical interface
 
-See the first 3 points on my [testing guide](blog.codepipes.com/testing/software-testing-antipatterns.html) if you want to know about these categories.
+See the first 3 points on my [testing guide](../testing/software-testing-antipatterns.html) if you want to know about these categories.
 
 Component and end-to-end (e2e) tests are more difficult to set up and run. Your AI agent will probably default to creating the simple unit tests if not guided correctly.
 
@@ -94,9 +112,24 @@ Remember: when submitting a PR you should always be ready to explain *why* somet
 
 ### Your PR breaks existing functionality
 
+Another common issue with AI agents, is that they do not understand the impact of their changes. A lot of "guides" explain how you can use an agent in a testing loop where implementing a feature is done when the tests pass correctly. The problem is that making something work by fixing the code is very different than fixing the test. 
+
+It is your responsibility as a human to understand if your PR:
+
+* is only implementing brand new functionality that doesn't break anything for existing users
+* it fixes a bug (and test) for something that never worked correctly in the first place
+* it updates (and possible breaks) an existing workflow but this has already been discussed in an GitHub issue and maintainers approve the change.
+
+For most open source projects, backwards compatibility is paramount. This means that even if your PR is perfect on a technical level, but 
+breaks current functionality for existing users, maintainers will reject is without some kind of migration plan or documentation warning.
+
+
 ### Your PR changes existing tests
 
-This is another common reason maintainers reject PRs.
+This is a sub case of the previous problem. Unit tests function as runnable specification for a project. Every time your AI agent is updating an existing test, **you are changing expected behavior for current users**. Changing an existing test means changing the specifications.
+
+When you submit a PR you should know the impact of changing existing tests. Don't just blindly let your agent change existing tests just to make a feature "pass". Do some planing to understand WHY the test must change and if it is better to implement something more in the code to keep the existing
+test as is.
 
 ### You missed corner cases and racing conditions
 
