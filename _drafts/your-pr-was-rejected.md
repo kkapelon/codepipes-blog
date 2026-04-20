@@ -121,29 +121,93 @@ It is your responsibility as a human to understand if your PR:
 * it updates (and possible breaks) an existing workflow but this has already been discussed in an GitHub issue and maintainers approve the change.
 
 For most open source projects, backwards compatibility is paramount. This means that even if your PR is perfect on a technical level, but 
-breaks current functionality for existing users, maintainers will reject is without some kind of migration plan or documentation warning.
+breaks current functionality for existing users, maintainers will reject it without some kind of migration plan or documentation warning.
 
 
 ### Your PR changes existing tests
 
 This is a sub case of the previous problem. Unit tests function as runnable specification for a project. Every time your AI agent is updating an existing test, **you are changing expected behavior for current users**. Changing an existing test means changing the specifications.
 
-When you submit a PR you should know the impact of changing existing tests. Don't just blindly let your agent change existing tests just to make a feature "pass". Do some planing to understand WHY the test must change and if it is better to implement something more in the code to keep the existing
+When you submit a PR you should know the impact of changing existing tests. Don't just blindly let your agent change existing tests just to make a feature "pass". Do some planing to understand *why* the test must change and if it is better to implement something more in the code to keep the existing
 test as is.
 
 ### You missed corner cases and racing conditions
 
+Some open source projects are more complex than others. AI agents are very enthusiastic about implementing the actual business logic of a new 
+feature, but they often forget about the "boring" stuff that is required such as error handling, concurrency and backwards compatibility.
+
+For established open source projects, creating a feature that works in 80% of the cases is easy. The problem is getting to 95% or even 100% for all users. If you want to implement a major new feature you need to understand the history of the project, the common guidelines and the code hot-spots that will affect your Pull Request.
+
+Again, planning mode is your friend here. Guide your agent to look not only at the public documentation of the project, but also at existing issues and Pull requests (even closed ones). The worst thing you can do is to create a PR that resurfaces an old issues or misses a very obvious use case (see also the previous section about backwards compatibility).
+
+Be ready to answer questions of concurrency, multi-tenancy, performance and other tricky parts that affect this open source project.
+If the maintainer starts asking questions about these topics on the PR it means that you never addressed them correctly in the initial submission.
+
 ## Part 2 - Getting feedback after code review
+
+Ok, so let's say you followed my advice and you submitted a clean, minimal, tested and well designed PR to your favorite open source project that follows all existing guidelines. 
+
+In an ideal worlds the maintainer would be impressed with your technical skills and instantly merge your PR to the main branch of the project. Congrats! You are now an open source contributor.
+
+If you reading this guide though, it means that things are not like this and the maintainer either reject the PR right away or added additional comments.
 
 ### Don't use PR comments as a relay chat
 
+If the maintainer added a comment, do **NOT** just take their comment, put it on your agent and then just paste the result back to the GitHub discussion.
+
+This is actually the main reason that forced me to write this guide. I want to educate you on open 
+source contributions. I don't want to use GitHub discussions as another agent chat where I write the "prompt" and you just spend your tokens to give me a "response".
+
 ![AI pasted GitHub comments](../../assets/ai-pr-rejected/ai-generated-comments.png)
+
+Believe it or not but several contributors enjoy the social aspect of open source even more than the technical one. They love to spend their time in discussions (with humans) about new ideas, approaches and code architecture. This is how they learn and improve.
+
+If you simply paste your agent output on the GitHub issue
+
+* you dehumanize the discussion as now I  know I am speaking to your LLM and not you
+* I am not learning anything new myself by hearing a new perspective. I could also paste my own question on my own agent if I really wanted to do that. (hint: most times I might have done this already)
+* you show me another red flag that you don't really know what you are doing.
+
+It is ok to ask an agent for extra clarifications and do code research when you don't understand something. But I expect you to understand my comment and formulate an answer that convinces me that you know what you are doing.
+
+I cannot speak for all open source developers, but at least for me if you admit that you don't know
+how something works and ask for guidance, it actually motivates me to help you.
 
 ### Continue working on the PR with the correct context
 
 ### Group all feedback in a single session
 
+Most open source contributors have other things to do apart from reviewing PRs. Either a completely different job or they have their own features to implement. And most times they review PRs in batches or in dedicated triage/review time.
+
+You can help in a number of ways
+
+1. If you are still working on the PR, but haven't addressed all their comments yet, don't ping them until you are actually ready
+1. If you have clarification questions, do your research/planning and ask them all at once.
+1. If you know how to address their feedback, address all their points as a whole
+
+The worst thing you can do is waste their time by working with many interruptions.
+
+Let's say a maintainer has 3 points of feedback on you PR
+
+1. You only fix the first one and ping them
+1. They say that the 2 other points are not addressed yet
+1. You add another question for point 2
+1. They answer for point 2
+1. You implement point 2 and ping them again
+1. The add another comment for point 2
+1. You leave point 2 and fix point 3 (and ping) them
+1. They come to look at the PR and your fix of point 3 also broke something in point 1
+
+**Don't do this**. It wastes time for both parties and makes the whole discussion difficult for anybody to follow.
+
+This is also a red flag because it shows that you just enter each individual point to your AI agent instead of presenting a wholistic solution (see also the previous point about context).
+
 ## Moving forward
+
+I hope that this guide has given you some idea on how open source developers think and how you 
+can improve your open source contributions.
+
+At the time of writing, all popular open source projects are suffering from AI Slop Pull Requests that waste their own time (and also tokens). So if by reading this guide you yourself are not a part of this problem anymore, I consider it a great win for the whole community.
 
 
 
