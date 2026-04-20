@@ -146,7 +146,7 @@ This is a sub case of the previous problem. Unit tests function as runnable spec
 When you submit a PR you should know the impact of changing existing tests. Don't just blindly let your agent change existing tests just to make a feature "pass". Do some planning to understand *why* the test must change and if it is better to implement something more in the code to keep the existing
 test as is.
 
-### You missed corner cases and racing conditions
+### You missed corner cases and race conditions
 
 Some open source projects are more complex than others. AI agents are very enthusiastic about implementing the actual business logic of a new 
 feature, but they often forget about the "boring" stuff that is required such as error handling, concurrency and backwards compatibility.
