@@ -42,7 +42,7 @@ $ lein new clojure-http-server
 
 After I got the basic project structure in place, it was time to start editing code. As a long-time Eclipse user, the first thing I did was to search for an Eclipse plugin that handled Clojure. This would offer me syntax highlighting and code completion in my familiar workspace. That’s how I found the Eclipse plugin for Clojure called [CounterClockWise](https://github.com/ccw-ide/ccw/wiki/GoogleCodeHome). So I installed the plugin and created a new Clojure project in Eclipse.
 
-While this was OK, I didn’t manage to import into Eclipse my existing Clojure project that I had created from the command line with Lein as described into the previous section. I expected the CounterClockWise plugin to function like the Maven Eclipse plugin where there is two-way interaction between the pom.xml and the Eclipse GUI.
+While this was OK, I didn’t manage to import into Eclipse my existing Clojure project that I had created from the command line with Lein as described in the previous section. I expected the CounterClockWise plugin to function like the Maven Eclipse plugin where there is two-way interaction between the pom.xml and the Eclipse GUI.
 
 So, in summary I expected more automatic integration between Lein and the Eclipse plugin.
 
@@ -56,7 +56,7 @@ I did not find a built-in Clojure mode in Vim (an external plugin file exists), 
 
 Like most Functional languages, Clojure offers a command line shell where you can directly execute Clojure statements. This shell is very handy for development since it allows you not only to test small code snippets but also to run only parts of the program during development.
 
-This is nothing new for developers who have already used languages like Python or Perl. But for Java developers its brings a refreshing and more interactive way to coding.
+This is nothing new for developers who have already used languages like Python or Perl. But for Java developers it brings a refreshing and more interactive way to coding.
 
 ![Clojure REPL](../../assets/clojure-lein-docker/clojure-repl.png)
 
@@ -155,7 +155,7 @@ One thing that I noticed is that the order of methods inside the source file is 
 
 ## Creating a Docker container for Clojure
 
-The application is ready to be executed. This can be done very simply with `lein run`. This command however requires that you jave a full Java/Clojure development environment.
+The application is ready to be executed. This can be done very simply with `lein run`. This command however requires that you have a full Java/Clojure development environment.
 We can instead package the application to a Docker container.
 
 We use [multi-stage builds](https://docs.docker.com/build/building/multi-stage/) to create a minimal image with just the final executable and not the whole development environment. Here is the [Dockerfile](https://github.com/kkapelon/clojure-http-server/blob/master/Dockerfile):

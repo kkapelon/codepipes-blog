@@ -42,7 +42,7 @@ public void chargeCreditCard() {
 }
 {% endhighlight %}
 
-The *arrange* phase sets up the needed classes. In the example above the first two statements are that phase (a client and a billing service are initiliazed)
+The *arrange* phase sets up the needed classes. In the example above the first two statements are that phase (a client and a billing service are initialized)
 
 The *act* is the trigger of the test. This phase should call the method(s) of the [Subject under test](http://xunitpatterns.com/SUT.html). In our case
 that subject is the billing service. The trigger is the charge of 150 dollars.
@@ -52,7 +52,7 @@ the test fails.
 
 #### The arrange-act-assert structure is only present if developers account for it ####
 
-The example above is very simple so all three phases are instantly visible. One could improve the test even further by using blank lines as bellow:
+The example above is very simple so all three phases are instantly visible. One could improve the test even further by using blank lines as below:
 
 {% highlight java %}
 @Test
@@ -67,7 +67,7 @@ public void chargeCreditCard() {
 {% endhighlight %}
 
 However in really big tests, these phases are not always evident. Imagine a large JUnit test with complex business logic. Seasoned developers
-will still demarkate the phase with comments in order to improve readability:
+will still demarcate the phase with comments in order to improve readability:
 
 {% highlight java %}
 @Test
@@ -108,7 +108,7 @@ public void "charging a credit card - happy path"() {
 
 Even though this code is Groovy, I have kept it as close to Java as possible. The first thing you will notice
 is that the name of the method is full English text that clearly describes the test (more on this later). The second
-thing that you should notice is the set of given-when-then labels that split the code intro three parts.
+thing that you should notice is the set of given-when-then labels that split the code into three parts.
 
 It should be obvious that these blocks are directly mapped to the arrange-act-assert part of JUnit.
 The statements in the *given* block are the *arrange* phase, those in the *when* block correspond
@@ -189,7 +189,7 @@ This is the killer feature of Spock that played a pivotal role on its adoption o
 > 
 >--Colin Vipurs
 
- The primary purpose of unit tests it to catch regression errors. This happens when a test that passed in the previous build, fails in the current build. It might
+ The primary purpose of unit tests is to catch regression errors. This happens when a test that passed in the previous build, fails in the current build. It might
  seem counterintuitive but you *want* your tests to fail. A test that fails is a test that works.
 
 #### Failures in JUnit tests always need a debugger ####
@@ -281,16 +281,16 @@ Maven (and any other JUnit related tools) will format them with no extra configu
 
 However Spock can take this report a step further. Spock has its own [reports module](https://github.com/renatoathaydes/spock-reports) 
 that shows in the reports all text contained in the Spock blocks (i.e given, when, then).
-The result if the following:
+The result is the following:
 
 ![Spock reports](../../assets/spock-vs-junit/spock-reports.png)
 
-This is massive improvement in the readability of Spock tests. Non-technical people can see this report and take proper decisions
+This is a massive improvement in the readability of Spock tests. Non-technical people can see this report and take proper decisions
 without actually knowing how Java works.
 
 * _Testers_ can read Spock tests and compare them against their own test cases
 * _Business analysts_ can read Spock tests and verify that they reflect the specifications of the system
-* _Projects managers_ can read Spock reports and understand the status of the system. They can instantly decide
+* _Project managers_ can read Spock reports and understand the status of the system. They can instantly decide
 if a failed test has high or low impact.
 
 
@@ -333,7 +333,7 @@ This is a better illustration of the similarity of these tests:
 
 ![parameterized code sharing](../../assets/spock-vs-junit/parameterized.png)
 
-This type of tests are called _parameterized_ tests because they share they same test logic and all scenarios depend
+This type of tests are called _parameterized_ tests because they share the same test logic and all scenarios depend
 on different parameters passed to that test logic.
 
 #### Parameterized support in JUnit is very limiting and restricting
@@ -349,7 +349,7 @@ If you have never seen the approach of JUnit for parameterized tests, do not wor
 1. the test class must be polluted with fields that represent outputs
 1. a special constructor is needed for all inputs and outputs
 1. test data comes into a two dimensional object array (which is converted to a list)
-1. test data and test descriptions are in different placed
+1. test data and test descriptions are in different places
 1. you cannot easily use two tests in the same class.
 
 Essentially the "solution" offered by JUnit is more trouble than its worth and this is why so many Java developers
@@ -388,8 +388,8 @@ Here you can see that 3 JUnit tests were consolidated in a single Spock tests wi
 1. All input and output parameters are gathered in a single place (the where: block)
 1. The names the parameters are clearly denoted at the table header
 
-The flexibility of the Spock data table is even more powerful if you consider how this test grow over time.
-Adding a new test scenario is literately a single line addition. In the example above I have added two more scenarios
+The flexibility of the Spock data table is even more powerful if you consider how this test grows over time.
+Adding a new test scenario is literally a single line addition. In the example above I have added two more scenarios
 for png and gif images with minimal effort.
 
 Adding a new input or output variable is also very easy as you just need to add one more column to the table.
@@ -730,10 +730,10 @@ This test runs correctly because Spock can indeed mix matchers and real argument
 
 ![Spock with partial matchers](../../assets/spock-vs-junit/spock-partial-matchers.png)
 
-I consider this a big advantage of Spock over Mockito. The ability to define exactly what you want to ignore is an important pillar of strict tests. There is a a workaround with Mockito by using `eq()` matchers to expect a certain argument, but with Spock the code is much more clear and direct.
+I consider this a big advantage of Spock over Mockito. The ability to define exactly what you want to ignore is an important pillar of strict tests. There is a workaround with Mockito by using `eq()` matchers to expect a certain argument, but with Spock the code is much more clear and direct.
 
 Spock has several other capabilities when it comes to mocking and stubbing, but these deserve a full article on their own.
-As always, more details can found in the [Spock documentation](http://spockframework.org/spock/docs/1.0/interaction_based_testing.html) pages.
+As always, more details can be found in the [Spock documentation](http://spockframework.org/spock/docs/1.0/interaction_based_testing.html) pages.
 
 ### Conclusion
 

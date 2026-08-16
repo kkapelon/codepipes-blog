@@ -39,7 +39,7 @@ After some investigation, the development team realizes that some changes for th
 
 They fix the bug and inform QA that, actually, they really need to test EVERYTHING from the very beginning.
 
-The result: users are unhappy and not trusting your app, QA is unhappy with the extra effort and development team is afraid of refactoring.
+The result: users are unhappy and not trusting your app, QA is unhappy with the extra effort and the development team is afraid of refactoring.
 
 If we are lucky, the fix is made and a bug-free v5.3.1 reaches production. However there is the possibility that the fix breaks something else in another feature of SuperBlagTM that is found again by your unhappy users after a few more days. Thus we see this endless circle that can become a reality in really big enterprise applications.
 

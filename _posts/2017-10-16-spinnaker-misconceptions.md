@@ -28,7 +28,7 @@ In this muddy landscape, a new contender has appeared – Spinnaker. Unlike othe
 
 ## Spinnaker is more than a CI tool
 
-First things first. Spinnaker is not a build server. It was never designed that way. While in theory Spinnaker could implement its own service that acts as a build server, there is no need to do this. Spinnaker takes advantage of the existing Jenkins ecosystem and uses Jenkins behinds the scenes.
+First things first. Spinnaker is not a build server. It was never designed that way. While in theory Spinnaker could implement its own service that acts as a build server, there is no need to do this. Spinnaker takes advantage of the existing Jenkins ecosystem and uses Jenkins behind the scenes.
 
 Spinnaker has full support for controlling a Jenkins instance via its native API. Starting and monitoring Jenkins jobs is transparent to the Spinnaker user. This means that rather than designing a complete build server from scratch , Spinnaker takes advantage of your existing Jenkins installation with all its assorted plugins and existing configuration.
 
@@ -57,7 +57,7 @@ All these Spinnaker capabilities are present in other tools (e.g. Terraform and 
 
 Spinnaker is essentially a complete deployment solution that combines the capabilities of multiple existing tools (plus custom glue code) into a single and cohesive package.
 
-![Using Spinnaker as an one-stop-shop](../../assets/spinnaker-misconceptions/spinnaker-one-stop-shop.jpg)
+![Using Spinnaker as a one-stop-shop](../../assets/spinnaker-misconceptions/spinnaker-one-stop-shop.jpg)
 
 The following table shows how Spinnaker can be roughly compared to existing tools.
 
@@ -79,7 +79,7 @@ The following table shows how Spinnaker can be roughly compared to existing tool
 
 This comparison is really really easy. All the configuration tools that exist today (e.g. Puppet, Chef, Ansible) were initially created for the world of datacenters where there is an 1-1 mapping between a machine and a bare-metal server. The original purpose of these tools was to keep a fleet of machines up-to-date by continuously updating their configuration. We call this pattern **mutable infrastructure**.
 
-Mutable infrastructure makes sense when all you have is a real server that needs to be running at all times. Unfortunately, with the appearance of cloud infrastructures this is not the most optimal strategy anymore. Virtual machines change completely the process, as “servers” are now an abstract concept that can be dynamically launched and teared down in a matter of minutes.
+Mutable infrastructure makes sense when all you have is a real server that needs to be running at all times. Unfortunately, with the appearance of cloud infrastructures this is not the most optimal strategy anymore. Virtual machines change completely the process, as “servers” are now an abstract concept that can be dynamically launched and torn down in a matter of minutes.
 
 Containers took this dynamic nature even further by allowing developers to spin up an application in **seconds** rather than **minutes**.
 
@@ -143,7 +143,7 @@ This makes Spinnaker **the perfect match** to a Kubernetes cluster. Each tool is
 
 ![Kubernetes and Spinnaker ](../../assets/spinnaker-misconceptions/kubernetes-spinnaker.png)
 
-Notice that apart from Kubernetes, Spinnaker has native support for AWS, Azure, Openstack and Gooogle cloud.
+Notice that apart from Kubernetes, Spinnaker has native support for AWS, Azure, Openstack and Google cloud.
 
 ## Conclusion
 

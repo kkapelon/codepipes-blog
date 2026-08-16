@@ -37,7 +37,7 @@ The phases are:
 
 Traditionally the phases of this cycle could take several hours or even days. In the case of physical datacenters the deploy phase could even take months if the machine responsible for the software was not ready at the time of installation.
 
-Thankfully cloud infrastructure has (first in the form of Virtual Machines and lately with containers) removed all barriers that arose from the use of physical machines. Creating a new machine is now possible in a manner of minutes or even seconds.
+Thankfully cloud infrastructure has (first in the form of Virtual Machines and lately with containers) removed all barriers that arose from the use of physical machines. Creating a new machine is now possible in a matter of minutes or even seconds.
 
 This has allowed fast-moving companies to minimize the feedback time of the basic software cycle. The result being multiple software releases every hour as opposed to traditional releases that would happen weekly or monthly.
 
@@ -53,14 +53,14 @@ There is not a “single” application cycle anymore. At any given point in tim
 
 - The application that is already running in production and must stay healthy at all costs
 - The application that is waiting to be deployed. It may even be partially deployed into a subset of machines (canaries)
-- The application that developers are working on and will soon by released
+- The application that developers are working on and will soon be released
 
 In well-disciplined companies, more versions of the application might be present at any given time. For example, another version could exist that is currently passing load testing.
 
 
-## Moving from the the data-center to the cloud
+## Moving from the data-center to the cloud
 
-Minimizing the length of the application lifecycle is a constant effort. Getting quickly new features in production is the ultimate goal of every software company. We have seen in the previous section that deployments are a crucial part of the length of the cycle making them one of most usual bottlenecks.
+Minimizing the length of the application lifecycle is a constant effort. Getting quickly new features in production is the ultimate goal of every software company. We have seen in the previous section that deployments are a crucial part of the length of the cycle making them one of the most usual bottlenecks.
 
 In fact, if we take a vertical slice of time in the application lifecycle from the previous picture, we can see that all 3 phases **happen essentially at the same time**. Even though each phase is for a different version, it should be clear that deployments are now an intrinsic component of the whole cycle. At any single point of time:
 
@@ -100,7 +100,7 @@ When it comes to cloud deployments, most companies followed the path of least re
 The picture above shows one of the classic patterns of cloud adoption within companies that had already physical servers. 
 
 
-- Jenkins is still used for compilation, but it now extended with extra jobs that handle deployment
+- Jenkins is still used for compilation, but it is now extended with extra jobs that handle deployment
 - Configuration managements tools (e.g. Puppet and Chef) are now tasked with application deployment
 - Custom scripts serve as glue code that brings the end result of Jenkins to what cloud APIs expect
 
@@ -108,7 +108,7 @@ This workflow is the result of “patching” existing tools with the new requir
 
 Jenkins was never designed with deployment capabilities in mind. Its basic construct is a job and nothing else. It knows nothing about environments or deployments. Mixing compilation and deployment jobs quickly becomes a mess. Jenkins is used as an example here, but any traditional build server suffers from the same issues.
 
-Puppet, Chef and similar tools were designed for system administration and not application deployment. They are perfect for setting up a machine and changing its configuration to a new state. Attempting to use them for application deployment is a losing battle. Their fire-and-forget nature is a huge obstacle when it comes to safe deployments. Rolling back a release is a nightmare if the main application deployment fails. Configuration drift is a constant problem and can ruin deployments in the most unpredicable manner.
+Puppet, Chef and similar tools were designed for system administration and not application deployment. They are perfect for setting up a machine and changing its configuration to a new state. Attempting to use them for application deployment is a losing battle. Their fire-and-forget nature is a huge obstacle when it comes to safe deployments. Rolling back a release is a nightmare if the main application deployment fails. Configuration drift is a constant problem and can ruin deployments in the most unpredictable manner.
 
 The truth is that custom deployments scripts are essentially abusing all the existing tools (e.g. Jenkins and Chef/Puppet). They were never designed for cloud deployment in the first place. Any big company that tries this pattern will quickly see the limitations:
 
@@ -161,7 +161,7 @@ We have already described the basic software lifecycle at the beginning of this 
 
 First of all, for compilation/packaging Spinnaker just delegates to Jenkins. Spinnaker is not a build server and does not want to be a build server. Using the standard Jenkins API, Spinnaker can start Jenkins jobs, monitor their progress and obtain their results. 
 
-The difference here is the inversion of control. Spinnaker is controlling the main pipeline and Jenkins is just one of the build steps. This keeps the scope of Jenkins contained at what it is doing best - compiling code. All compilation jobs still stay with Jenkins but the deployment responsibility stay with Spinnaker.
+The difference here is the inversion of control. Spinnaker is controlling the main pipeline and Jenkins is just one of the build steps. This keeps the scope of Jenkins contained at what it is doing best - compiling code. All compilation jobs still stay with Jenkins but the deployment responsibility stays with Spinnaker.
 
 ![Spinnaker and Jenkins](../../assets/spinnaker-puzzle/spinnaker-and-jenkins.png)
 
@@ -192,7 +192,7 @@ The end result is a build pipeline within Spinnaker that is much more rich than 
 
 Spinnaker is using the “infrastructure-as-code” concept, also. All pipelines are also represented by yml files. The UI is completely optional and the API that runs behind the scenes is fully open for everybody to call (if such flexibility is needed).
 
-The final step if of course to make sure that the application is actually running once deployed. No guesswork is needed here. Spinnaker has native support for the API of all major cloud providers (Google, Azure, Amazon, Openstack etc.) and can query the status of clusters from the same interface used for deployment.
+The final step is of course to make sure that the application is actually running once deployed. No guesswork is needed here. Spinnaker has native support for the API of all major cloud providers (Google, Azure, Amazon, Openstack etc.) and can query the status of clusters from the same interface used for deployment.
 
 
 ![cloud status](../../assets/spinnaker-puzzle/cloud-status.png)
@@ -200,7 +200,7 @@ The final step if of course to make sure that the application is actually runnin
 
 Therefore, it is no longer necessary to visit the cloud console of your cloud provider to see what is happening. You can resize, delete or even create completely new clusters from Spinnaker itself.
 
-It should be clear now that Spinnaker can handle all phase of cloud development with a single platform.
+It should be clear now that Spinnaker can handle all phases of cloud development with a single platform.
 
 
 ![One Stop shop](../../assets/spinnaker-puzzle/spinnaker-one-stop-shop.jpg)

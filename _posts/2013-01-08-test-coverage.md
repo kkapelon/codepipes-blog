@@ -16,7 +16,7 @@ Before writing a single unit test, it’s necessary to determine exactly what to
 
 ## What you should NOT test
 
-You can spend your entire life testing away if you like, but it’s probably best to to make some assumptions in the beginning to save yourself some time. After all, if you end on testing your own database all the time, then you’ve got bigger problems than error-free app deployment. So before explaining where you should focus your unit testing efforts, let’s see what you should NOT test and get it out of the way first.
+You can spend your entire life testing away if you like, but it’s probably best to make some assumptions in the beginning to save yourself some time. After all, if you end up testing your own database all the time, then you’ve got bigger problems than error-free app deployment. So before explaining where you should focus your unit testing efforts, let’s see what you should NOT test and get it out of the way first.
 
 I’ll ask you to trust my 8 years in software development when I say you should NOT write units tests for:
 
@@ -119,7 +119,7 @@ public class MyUriValidatorTest {
 }
 ```
 
-There is clearly a lot of code of duplication here. JUnit has a [@Before annotation](https://junit.org/junit4/javadoc/4.12/org/junit/Before.html) for code that runs automatically before each test method. So your test can be simplified to:
+There is clearly a lot of code duplication here. JUnit has a [@Before annotation](https://junit.org/junit4/javadoc/4.12/org/junit/Before.html) for code that runs automatically before each test method. So your test can be simplified to:
 
 ```java
 public class MyUriValidatorTest {
@@ -205,7 +205,7 @@ public class MyUriValidatorTest {
 }
 ```
 
-As you can see, adding a new URL is a single line change in the the method annotated as Parameters. You should examine all the capabilities of JUnit as contained in the WIKI.
+As you can see, adding a new URL is a single line change in the method annotated as Parameters. You should examine all the capabilities of JUnit as contained in the WIKI.
 Be sure not to miss [Exception Testing](https://github.com/junit-team/junit4/wiki/Exception-testing), [Theories](https://github.com/junit-team/junit4/wiki/Theories), [Rules](https://github.com/junit-team/junit4/wiki/Rules) and [Categories](https://github.com/junit-team/junit4/wiki/Categories).
 
 For even more advanced capabilities check out [TestNG](https://testng.org/) which is a lot more advanced than JUnit. In fact JUnit is playing catch-up and some features of the latest versions are stolen/inspired (take your pick) from TestNG.

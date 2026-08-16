@@ -41,7 +41,7 @@ So if for example direction is 4 and angle is 2 the rocket explodes:
 panic: runtime error: integer divide by zero 
 ```
 
-So there you have it. **Right in front on your eyes there is an application with 100% code coverage that also has a bug**. And this application was _just one line of code_. In a real application with 50,000 LOC you will probably have 100, 1000, 10000 bugs **EVEN with 100% code coverage**.
+So there you have it. **Right in front of your eyes there is an application with 100% code coverage that also has a bug**. And this application was _just one line of code_. In a real application with 50,000 LOC you will probably have 100, 1000, 10000 bugs **EVEN with 100% code coverage**.
 
 Achieving 100% therefore says nothing about your software quality. And by induction assuming that going from 90% to 100% will magically solve all bugs is also not correct. 
 
@@ -51,7 +51,7 @@ Q. This article is useless. Everybody knows that 100% code coverage doesn't elim
 A. Junior developers [certainly don't know this](https://xkcd.com/1053/). Misguided team managers don't know it as well. Several articles that I am not going to link, also advocate for 100% code coverage. I actually wrote this article, because now I can give everybody the link instead of showing the same example again and again.
 
 Q. Where did you get the input numbers for your unit tests?  
-A. From my business analyst, or my QA engineer or my buddy Fred. Does it really matter? All it matters
+A. From my business analyst, or my QA engineer or my buddy Fred. Does it really matter? All that matters
 is that I had 100% code coverage with them.
 
 Q. Of course it matters. As soon as I saw your method I thought about the error and I would write a unit test for that. Your QA engineer missed that case.  

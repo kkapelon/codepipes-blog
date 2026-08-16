@@ -122,7 +122,7 @@ So with that in mind let's see some tangible advantages. As an example applicati
 
  1. A Java application that implements a Web interface and accepts customer orders
  1. A Mysql DB that is used for main storage
- 1. A second Java application the creates reports and records metrics
+ 1. A second Java application that creates reports and records metrics
  1. A Mongodb for keeping metrics
  1. A RabbitMQ instance for communication among the two applications.
 
@@ -190,7 +190,7 @@ and just examine manually what messages reach the queue. This would save you fro
 
 Unfortunately there is a very sneaky category of bugs that happen only under specific versions/configurations. The first thing that comes in mind is issues with things like line/path delimiters where the production system is running on Linux, while developers run Java application on their local Windows workstation. The second thing that comes in mind is 
 incompatibilities among Linux distributions. Your developer machine runs Ubuntu, the production server runs Redhat and
-and several OS libraries are different between them making the replication of the production environment very difficult.
+several OS libraries are different between them making the replication of the production environment very difficult.
 
 In that case it is best to replicate the whole system at the OS level locally. And yes, a VM could also achieve the same result, 
 but as explained in the previous section Docker containers are much more flexible and efficient.
@@ -232,7 +232,7 @@ also play part in your overall *system architecture*.
 
 This aspect of Docker is not examined yet in detail, so please - please be very careful if you go down this route.
 In our application example we could discard our static architecture and go for a fully dynamic one where
-a Docker container is created **per request**. This is a something that a VM could never pull off.
+a Docker container is created **per request**. This is something that a VM could never pull off.
 
 ![Initial state](../../assets/docker-big-picture/extreme-state0.png)
 
@@ -241,7 +241,7 @@ messages and launch Docker systems in place for each individual message. Let's s
 
 ![Two web requests](../../assets/docker-big-picture/extreme-state1.png)
 
-The docker containers that served the requests have finished and are teared down. Their processing result created 4 messages for the metric application.
+The docker containers that served the requests have finished and are torn down. Their processing result created 4 messages for the metric application.
 So we launch dynamically four respective containers to serve these messages.
 
 ![Four metric requests](../../assets/docker-big-picture/extreme-state2.png)
@@ -321,7 +321,7 @@ deployment environments can be created per feature branch).
 This is not a straight-forward process if running Docker locally required several shortcuts. While you may be comfortable
 executing multiple statements in your command line, the build server process must be completely automated and streamlined.
 
-The most common problem here is configuration management. Creating isolated Docker environments means thats each one does no clash with the other in any way (i.e. writing to the same files or using the same DB).
+The most common problem here is configuration management. Creating isolated Docker environments means that each one does not clash with the other in any way (i.e. writing to the same files or using the same DB).
 
 Depending on your situation it is sometimes acceptable to reuse some infrastructure among your environments (for example your email server).
 
@@ -352,7 +352,7 @@ It should be clear that even at adoption stage 2 Kubernetes is *not* a strict re
 
 ##### Adoption Stage 3 - Docker is used for Testing/QA 
 
-Having mastered short-lived Docker environments visible only to developers, it now time to present Docker to testers as well.
+Having mastered short-lived Docker environments visible only to developers, it is now time to present Docker to testers as well.
 The goal here is to remove all predefined VM based environments (qa, staging etc) and replace them with *long-lived* Docker containers.
 
 Keeping Docker containers running is a huge topic on its own. While in theory you could use plain Docker and nothing else, it makes sense to start researching orchestration solutions (i.e. Kubernetes) now. Even if your testers are not that picky as your customers (and they can accept some downtime), knowing how to keep Docker containers alive is a prerequisite for the next adoption stage.

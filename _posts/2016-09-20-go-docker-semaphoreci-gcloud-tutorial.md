@@ -188,7 +188,7 @@ in the root directory of the project. Very cool indeed!
 
 ![Semaphore Docker support](../../assets/go-docker-gcloud/docker-support.png)
 
-The first thing we need to declare is the GO version that will use for compilation. Naturally it should be as close as possible to
+The first thing we need to declare is the GO version that we will use for compilation. Naturally it should be as close as possible to
 our Docker image. Semaphore supports the latest version of GO directly from the dropdown menu making this step very easy.
 
 ![Semaphore Go support](../../assets/go-docker-gcloud/go-version.png)
@@ -242,7 +242,7 @@ The browser will save a JSON file locally.
 
 #### Authorizing SemaphoreCI to push images to Google Container Registry
 
-Now that the JSON auth file is saved locally, open it and copy all contents to clipboard. Go the SemaphoreCI UI and select "add-ons" from the top right corner.
+Now that the JSON auth file is saved locally, open it and copy all contents to clipboard. Go to the SemaphoreCI UI and select "add-ons" from the top right corner.
 
 ![Semaphore add-ons](../../assets/go-docker-gcloud/semaphore-addons.png)
 
@@ -281,7 +281,7 @@ There are multiple ways to deploy the application to the Google cloud. These inc
 
  To authorize gcloud access we will reuse the JSON auth file we saved in Step 4.
 
- First move the JSON file file to `[WORKDIR]` so that we can use it via docker. This is only temporary and will not actually commit the file anywhere.
+ First move the JSON file to `[WORKDIR]` so that we can use it via docker. This is only temporary and will not actually commit the file anywhere.
 
 {% highlight shell %}
 $ docker run -v /[WORKDIR]:/work -it google/cloud-sdk
@@ -358,7 +358,7 @@ auth key. Semaphore will make the key available during our build so that we don'
 
 ![Semaphore File Configuration](../../assets/go-docker-gcloud/auth-key.png)
 
-Then go back to the your project and click the `Setup Up Deployment` button. Select [Generic deployment](https://semaphoreci.com/docs/generic-deployment.html) for the list (as Semaphore does not have native support for Google Cloud yet). On the next screen you will be asked about manual or automatic deployment.
+Then go back to the your project and click the `Setup Up Deployment` button. Select [Generic deployment](https://semaphoreci.com/docs/generic-deployment.html) from the list (as Semaphore does not have native support for Google Cloud yet). On the next screen you will be asked about manual or automatic deployment.
 I chose automatic to simplify things.
 
 ![Semaphore Generic deployment](../../assets/go-docker-gcloud/generic-deployment.png)

@@ -10,7 +10,7 @@ _This post was originally published at the [JRebel/Zeroturnaround blog](https://
 
 When it comes to Java, most developers either use [JUnit](https://junit.org/) or [TestNG](http://testng.org/doc/index.html). JUnit is the established de-facto solution, while TestNG attempts to offer additional features needed for Enterprise applications.
 
-For excellent unit tests, you also need to looking into mocking as I explained in one of [my previous posts](https://www.jrebel.com/blog/mock-unit-testing-with-mockito). For this need Mockito comes to the rescue and offers powerful mocking abilities to your unit tests.
+For excellent unit tests, you also need to look into mocking as I explained in one of [my previous posts](https://www.jrebel.com/blog/mock-unit-testing-with-mockito). For this need Mockito comes to the rescue and offers powerful mocking abilities to your unit tests.
 
 So is JUnit/Mockito the best possible combination?
 

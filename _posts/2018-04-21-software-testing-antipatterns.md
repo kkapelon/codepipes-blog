@@ -37,7 +37,7 @@ If you have never encountered the testing pyramid before, I would urge you to be
 
  **Unit tests** are the category of tests that have wider acceptance regarding the naming and what they mean. They are the tests that accompany the source code and have direct access to it. Usually they are executed with an [xUnit framework](https://en.wikipedia.org/wiki/XUnit) or similar library. These tests work directly on the source code and have full view of everything. A single class/method/function is tested (or whatever is the smallest possible working unit for that particular business feature) and anything else is mocked/stubbed.
 
- **Integration tests** (also called service tests, or even component tests) focus on a whole component. A component can be a set of classes/methods/functions, a module, a subsystem or even the application itself. They examine the component by passing input data and examinining the output data it produces. Usually some kind of deployment/bootstrap/setup is required first. External systems can be mocked completely, replaced (e.g. using an in-memory database instead of a real one), or the real external dependency might be used depending on the business case. Compared to unit tests they may require more specialized tools either for preparing the test environment, or for interacting/verifying it.
+ **Integration tests** (also called service tests, or even component tests) focus on a whole component. A component can be a set of classes/methods/functions, a module, a subsystem or even the application itself. They examine the component by passing input data and examining the output data it produces. Usually some kind of deployment/bootstrap/setup is required first. External systems can be mocked completely, replaced (e.g. using an in-memory database instead of a real one), or the real external dependency might be used depending on the business case. Compared to unit tests they may require more specialized tools either for preparing the test environment, or for interacting/verifying it.
 
  The second category suffers from a blurry definition and most naming controversies regarding testing start here. The "scope" for integration tests is also highly controversial and especially the nature of access to the application ([black](https://en.wikipedia.org/wiki/Black-box_testing) or [white](https://en.wikipedia.org/wiki/White-box_testing) box testing and whether [mocking](https://en.wikipedia.org/wiki/Mock_object) is allowed or not).
 
@@ -151,7 +151,7 @@ In the end, the number of integration tests will be much smaller than the number
 
 #### Integration tests are slow
 
-The second big issue with integration tests apart from their complexity is their speed. Usually an integration test is one order of magnitute slower than a unit test. Unit tests need just the source code of the application and nothing else. They are almost always CPU bound. Integration tests on the other hand can perform I/O with external systems making them much more difficult to run in an effective manner. 
+The second big issue with integration tests apart from their complexity is their speed. Usually an integration test is one order of magnitude slower than a unit test. Unit tests need just the source code of the application and nothing else. They are almost always CPU bound. Integration tests on the other hand can perform I/O with external systems making them much more difficult to run in an effective manner. 
 
 Just to get an idea on the difference for the running time let's assume the following numbers.
 
@@ -214,7 +214,7 @@ This is the longest section of this article, but I consider it very important. I
 1. Unit tests run much faster than integration tests
 1. Broken unit tests are easier to fix than broken integration tests
 
-If you only have integration tests, you waste developer time and company money. You need **both** unit and integration tests are the same time. They are not mutually exclusive. There are several articles on the internet that advocate using only one type of tests. All these articles are misinformed. Sad but true.
+If you only have integration tests, you waste developer time and company money. You need **both** unit and integration tests at the same time. They are not mutually exclusive. There are several articles on the internet that advocate using only one type of tests. All these articles are misinformed. Sad but true.
 
 
 ### Anti-Pattern 3 - Having the wrong kind of tests
@@ -303,7 +303,7 @@ behaved and takes into account the effort required for tests, it is perfectly fi
 But not all developers are lucky like this. In most cases you inherit an existing application that has a minimal amount of tests (or even none!). If you are part of a big and established company, working with legacy code is mostly the rule rather than the exception. 
 
 Ideally you would have enough development time to write tests for both new and existing code for a legacy application. This is a romantic idea that will probably be rejected
-by the average project manager who is mostly interested on adding new features rather then testing/refactoring. You have to pick your battles and find a fine balance between adding new functionality (as requested by the business) and expanding the existing test suite.
+by the average project manager who is mostly interested on adding new features rather than testing/refactoring. You have to pick your battles and find a fine balance between adding new functionality (as requested by the business) and expanding the existing test suite.
 
 So what do you test? Where do you focus your efforts? Several times I have seen developers wasting valuable testing time by writing "unit tests" that add little or no value to the overall stability of the application. The canonical example of useless testing is trivial tests that verify the application data model.
 
@@ -320,7 +320,7 @@ This is not true as different code components have a different impact in the ove
 1. Customers cannot check-out their cart halting all sales
 1. Customers get wrong recommendations when they browse products.
 
-Even though both bugs should be fixed, it is obvious that the first one has higher priority. Therefore if you inherit an eshop application with zero tests, you should write new tests the directly validate the check-out functionality rather than the recommendation engine. Despite the fact that the recommendation engine and the check-out process might exist on sibling folders in the filesystem, their importance is different when it comes to testing.
+Even though both bugs should be fixed, it is obvious that the first one has higher priority. Therefore if you inherit an eshop application with zero tests, you should write new tests that directly validate the check-out functionality rather than the recommendation engine. Despite the fact that the recommendation engine and the check-out process might exist on sibling folders in the filesystem, their importance is different when it comes to testing.
 
 To generalize this example, if you work for some time in any medium/large application you will soon need to think about code using a different representation - the mental model.
 
@@ -333,7 +333,7 @@ I am showing here 3 layers of code, but depending on the size of your applicatio
 1. Other code - This is code that rarely changes, rarely gets new features and has minimal impact on application users.
 
 
-This mental mode should be your guiding principle whenever you write a new software test. Ask yourself if the functionality you are writing tests for now belongs to the *critical* or *core* categories.
+This mental model should be your guiding principle whenever you write a new software test. Ask yourself if the functionality you are writing tests for now belongs to the *critical* or *core* categories.
 If yes, then write a software test. If no, then maybe your development time should better be spent elsewhere (e.g. in another bug).
 
 The concept of having code with different severity categories is also great when you need to answer the age old question of how much code coverage is enough for an application. To answer this question you need to either know the severity layers of the application or ask somebody that does. Once you have this information at hand the answer is obvious:
@@ -466,7 +466,7 @@ If after reading about these metrics, you still insist on setting a hard number 
 
 Do *not* try to achieve 100% total code coverage. Achieving 100% code coverage sounds good in theory but almost always is a waste of time:
 
-* you have wasted a lost of effort as getting from 80% to 100% is much more difficult than getting from 0% to 20%
+* you have wasted a lot of effort as getting from 80% to 100% is much more difficult than getting from 0% to 20%
 * Increasing code coverage has diminishing returns 
 
 In any non trivial application there are certain scenarios that needs complex unit tests in order to trigger. The effort required to write these tests will usually
@@ -483,7 +483,7 @@ The time spent on getting them covered should be better spent on actual features
 ![Code Coverage Value](../../assets/testing-anti-patterns/code-coverage-value.jpg)
 
 
-Projects that need a specific code coverage percentage as a delivery requirement usually force developers to test trivial code in order or write tests that just verify the underlying
+Projects that need a specific code coverage percentage as a delivery requirement usually force developers to test trivial code in order to write tests that just verify the underlying
 programming language. This is a huge waste of time and as a developer you have the duty to complain to management who has such unreasonable demands.
 
 In summary, code coverage is a metric that should **not** be used as a representation for quality of a software project. 
@@ -505,7 +505,7 @@ A failing test should be easily recognizable by everybody in your team as it cha
 
 ![Flaky tests](../../assets/testing-anti-patterns/flaky-tests.png)
 
-Even a small number of flaky tests in enough to destroy the credibility of the rest of test suite. If you have 5 flaky tests for example, run the build and get 3 failures it is not immediately evident if everything is fine (because the failures were coming from the flaky tests) or if you just introduced 3 regressions.
+Even a small number of flaky tests is enough to destroy the credibility of the rest of test suite. If you have 5 flaky tests for example, run the build and get 3 failures it is not immediately evident if everything is fine (because the failures were coming from the flaky tests) or if you just introduced 3 regressions.
 
 A similar problem is having tests that are really really slow. Developers need a quick feedback on the result of each commit (also discussed in the next section) so slow tests will eventually be ignored or even not run at all. 
 
@@ -565,7 +565,7 @@ Try to design your tests with the same attention that you give to the feature co
 
 * All test creation code should be centralized. All tests should create test data in the same manner
 * Complex verification segments should be extracted in a common domain specific library
-* Mocks and stubs that are used too many times should not be copied-pasted.
+* Mocks and stubs that are used too many times should not be copy-pasted.
 * Test initialization code should be shared between similar tests.
 
 If you employ tools for static analysis, source formatting or code quality then configure them to run on test code, too.

@@ -23,12 +23,12 @@ Technology moves very fast. Most of the companies mentioned in the article have 
 their products in a significant manner. Please do not use this guide for major decisions.
 
 I was going to update the guide, but since I now work for one of the companies (Codefresh)
-it is a bit difficult to stay biased.
+it is a bit difficult to stay unbiased.
 
 
 ### A brief comparison of hosted Continuous Integration services
 
-I was a happy user of [SnapCI](https://snap-ci.com/). I really liked the way pipelines worked and how easy was
+I was a happy user of [SnapCI](https://snap-ci.com/). I really liked the way pipelines worked and how easy it was
 to add a new project. SnapCI also had other nice features for Java developers like automatic caching
 for both Maven and Gradle dependencies without any extra configuration.
 
@@ -117,7 +117,7 @@ this is not a big issue as Buddy provides a great UI experience for choosing you
  You can also choose your own docker image as your build environment so you are not really restricted by the actions
  already provided by Buddy.
 
- The killer feature of Buddy however is the way you can build pipelines. You pick pipeline actions from the GUI in a Lego-like function. You can drag-n-drop actions to change their order and also add extra on-failure actions.
+ The killer feature of Buddy however is the way you can build pipelines. You pick pipeline actions from the GUI in a Lego-like fashion. You can drag-n-drop actions to change their order and also add extra on-failure actions.
 
 ![BuddyWork pipelines](../../assets/ci-comparison/buddyworks/pipeline-settings.png)
 
@@ -153,7 +153,7 @@ I would recommend that you look at the name clash between Buddy and [Buddy](http
 | Extra features    |  [Team controls](https://buddy.works/knowledge/collaboration). [Code commit parsing](https://buddy.works/knowledge/deployments/how-use-commit-commands). [On premise version](https://buddy.works/buddy-go) |
 | Disadvantages    | No auto-detection of build system|
 | Killer feature    | Very flexible build environment. Lego-like creation of pipelines|
-| **Final Verdict**    | I can highly recommended Buddy for both Gradle and Maven projects. The pipeline support is the ideal tool for both experienced (yml) and novice users (GUI actions) alike. |
+| **Final Verdict**    | I can highly recommend Buddy for both Gradle and Maven projects. The pipeline support is the ideal tool for both experienced (yml) and novice users (GUI actions) alike. |
 
 
 
@@ -185,13 +185,13 @@ The main problem with the environment is the fact that all phases are hardcoded.
 
 You can see instantly that this pattern is better for interpreted languages where fetching the dependencies and running unit tests are two completely different phases. 
 
-In the Java world this is not the usual case. Both Gradle and Maven fetch their dependencies dynamically (i.e when they needed). For example Maven with fetch its surefire dependencies only when you actually run JUnit tests.
+In the Java world this is not the usual case. Both Gradle and Maven fetch their dependencies dynamically (i.e when they needed). For example Maven will fetch its surefire dependencies only when you actually run JUnit tests.
 
 CircleCI is one of the few products that supports reporting of JUnit tests. Unfortunately they are not enabled by default which again is a pity because the presence of a pom.xml or build.gradle should implicitly enable that report as well.
 
 ![CircleCI test support](../../assets/ci-comparison/circleci/circleci-test.png)
 
-Test reports can also be collected as as artifacts of the build giving you one-click access to them. CircleCI also supports [parallel testing](https://circleci.com/docs/parallel-manual-setup/). However,  I could not get this to work even though JUnit is one of the supported test runners.
+Test reports can also be collected as artifacts of the build giving you one-click access to them. CircleCI also supports [parallel testing](https://circleci.com/docs/parallel-manual-setup/). However,  I could not get this to work even though JUnit is one of the supported test runners.
 
 The real highlight however, of CircleCI is the SSH support. You can ssh directly to the build machine. Your build will be paused and you are free to run any commands you want in order to debug a problematic build. The authentication method is with ssh keys (the same ones defined in Github)
 
@@ -221,7 +221,7 @@ If you work at CircleCI and are reading this, your product is almost perfect. Yo
 
 [Codefresh](http://codefresh.io) is an American company located  in Mountain View and launched in 2014.
 
-Like Distelli, Codefresh is much more than an hosted CI service. It supports both GitHub and Bitbucket and on the surface it appears
+Like Distelli, Codefresh is much more than a hosted CI service. It supports both GitHub and Bitbucket and on the surface it appears
 to be just another hosted CI service ([with Java support](https://docs.codefresh.io/docs/java)).  They even have a whole blog post about [migration from SnapCI](https://codefresh.io/blog/alternatives-to-snapci/). 
 
 In reality however, Codefresh is a Docker Image Management platform. This is a very interesting idea and moves Codefresh
@@ -244,7 +244,7 @@ The more interesting approach however is to use a [yml file](https://docs.codefr
 The killer features of Codefresh are that it allows you to view/manage the Docker images that you have created without
 requiring an external Docker registry and it even offers test environments to launch your Docker images!
 
-This is a very impressive feature as it allows you to easily demonstrate new features to your collegues (or customers)
+This is a very impressive feature as it allows you to easily demonstrate new features to your colleagues (or customers)
 without requiring any formal deployment environments. You can also use Docker compose on these test environment. I can see a lot of useful scenarios for this capability.
 
 I had no trouble to run my Java application within a Docker image:
@@ -273,7 +273,7 @@ Lack of built-in cache support is the only thing that prevents me from fully rec
 | Extra features    | Support for Docker compose and running Docker images|
 | Disadvantages    | yml is required for most cases. No built-in cache  |
 | Killer feature    | The first and only platform that manages and launches Docker images|
-| **Final Verdict**    | Both Maven and Gradle project could work ok with Codefresh but caching dependencies is not supported out of the box |
+| **Final Verdict**    | Both Maven and Gradle projects could work ok with Codefresh but caching dependencies is not supported out of the box |
 
 ### Codeship
 
@@ -379,7 +379,7 @@ getting the attention it deserves from the company.
 | Pricing    | [Details](https://codeship.com/pricing) |
 | Documentation    | Good but [nothing impressive here](https://documentation.codeship.com/) |
 | User Interface | Clean and well designed  |
-| Build configuration | No project autodetection. Anciend Gradle version. No compilation phase |
+| Build configuration | No project autodetection. Ancient Gradle version. No compilation phase |
 | Docker support | None in the basic version. Full Docker support (and more) in the pro version|
 | Extra features    | [Rest API](https://documentation.codeship.com/basic/getting-started/api/), Deployment pipelines, test parallelism, [Roles](https://documentation.codeship.com/general/account/organizations/)|
 | Disadvantages    | No Gradle cache, needs a push to start the first build (!!!)  |
@@ -395,7 +395,7 @@ several times (with other products I could get a build in seconds) but I was cur
 Java build might work with Deploybot.
 
 Long story short, the product is aimed more at websites in PHP, Python and Ruby. Compiling code
-is something extra-ordinatory and can only by configured as a "custom deployment script".
+is something extraordinary and can only by configured as a "custom deployment script".
 
 ![Deploybot compilation](../../assets/ci-comparison/deploybot/build-deployment.png)
 
@@ -441,14 +441,14 @@ very confusing.
 
 ### Distelli
 
-[Distelli](https://www.distelli.com/) is a American company launched in 2013 and based in Seattle.
+[Distelli](https://www.distelli.com/) is an American company launched in 2013 and based in Seattle.
 
 **Update September 2017**: Puppet [bought Distelli](https://puppet.com/blog/welcome-distelli-to-puppet-family) so my review might soon be obsolete.
 
-They have a very active web page with [blogs posts](http://www.blog.distelli.com/) covering several topics regarding
+They have a very active web page with [blog posts](http://www.blog.distelli.com/) covering several topics regarding
 containers, pipelines and Kubernetes deployments.
 
-Calling Distelli a hosted CI service would be an understatement. It is a complete one-shop solution
+Calling Distelli a hosted CI service would be an understatement. It is a complete one-stop solution
 for the whole deployment process. It has
 
 * support of declaring your environments and deployments (like [GoCD](https://www.gocd.io/))
@@ -487,7 +487,7 @@ of the general build status you also get a report on where/when that particular 
 
 ![Distelli overview](../../assets/ci-comparison/distelli/overview.png)
 
-The icing of the cake is that Distelli offers a [build agent](https://www.distelli.com/docs/agent/distelli-agent) which has a combo role. It can act either
+The icing on the cake is that Distelli offers a [build agent](https://www.distelli.com/docs/agent/distelli-agent) which has a combo role. It can act either
 as a local build server (allowing you to monitor local capacity in the Distelli UI) or as an agent
 to be installed for a target deployment server. Very impressive indeed!
 
@@ -517,7 +517,7 @@ I will keep a close eye on Distelli because in the future it might become the ki
 | Docker support | Built-in|
 | Extra features    | [Pipelines](https://www.distelli.com/docs/kb/introduction-to-dashboards), [API](https://www.distelli.com/docs/api/getting-started-with-distelli-api) , [Local build client](https://www.distelli.com/docs/agent/installing-the-distelli-cli), [Kubernetes support](https://distelli.engineering/kubernetes-ci-cd-with-docker-and-node-2ac29cf48b2b#.h50iv82sq) and more|
 | Disadvantages    | No configurable cache for either Maven or Gradle |
-| Killer feature    | An one-stop-shop for your deployment pipelines |
+| Killer feature    | A one-stop-shop for your deployment pipelines |
 | **Final Verdict**    | Distelli is very impressive but until it gains cache support I cannot really recommend it for Java projects (unless you only use local build servers).|
 
 
@@ -586,7 +586,7 @@ I consider this a bad practice](https://zeroturnaround.com/rebellabs/9-features-
 
 In order to play along I had to make several commits into my repository until [my configuration](http://docs.shippable.com/ci/shippableyml/) was correct.
 This was a very time-consuming process because there is no way of knowing if Shippable will accept your yml file before
-hand. You need to commit each of your changes and make a build. Naturally, my repository was now full or trivial commits
+hand. You need to commit each of your changes and make a build. Naturally, my repository was now full of trivial commits
 with minor adjustments. Sad but true.
 
 Shippable has a very nice UI, but unfortunately I could never enjoy it. It always became unresponsive as soon
@@ -641,7 +641,7 @@ Like Codeship, Shippable is an imbalanced product. The UI is great, the features
 
 ### SolanoLabs
 
-[SolanoLabs](https://www.solanolabs.com) (previously known as Tddium ) is an American company founded in 2011 with offices in Boston and San Fransisco. They 
+[SolanoLabs](https://www.solanolabs.com) (previously known as Tddium ) is an American company founded in 2011 with offices in Boston and San Francisco. They 
 have a very "enterprisy" [page](https://www.solanolabs.com/services) and a [blog](http://blog.solanolabs.com/)  
 that seems to be filled with press releases mostly, instead of actual engineering content.
 
@@ -731,7 +731,7 @@ but this is not problem if you use [Gradle wrapper](https://docs.gradle.org/curr
 Docker support is not available by default, but you need to configure it (again in the yml file) so that the build slave
 is Docker enabled.
 
-In general my experience with Travis was a positive one. My only big complain would be the lack of explicit
+In general my experience with Travis was a positive one. My only big complaint would be the lack of explicit
 pipelines.
 Travis has obviously the first mover advantage in the hosted CI market. It is an adequate solution
 and works as you would expect. I feel however,  that the competition not only caught up with Travis
@@ -754,13 +754,13 @@ but is now surpassing it.
 
 [Vexor](https://vexor.io/) is a Russian company launched in 2011 and located in Moscow. The parent company is [Evrone](https://evrone.com/). Their website is very spartan and their blog contains exactly one post about the product itself.
 
-Vexor supports both GitHub and Bitbucket and it was very easy to build projects from both types or repositories.
+Vexor supports both GitHub and Bitbucket and it was very easy to build projects from both types of repositories.
 
 The first surprise came from the autodetection dialog. They can detect Scala and Clojure but not Java!!!
 
 ![Vexor autodetect](../../assets/ci-comparison/vexor/auto-detect.png)
 
-My Clojure project was built right way, but my Java one needed special customization. Vexor supports
+My Clojure project was built right away, but my Java one needed special customization. Vexor supports
 a yml file with the same syntax as Travis. The good thing however is that it also offers a simple GUI that allows
 you to define your yml via the web interface so that you don't litter your repo with extra files (I am looking
 at you Shippable and Wercker).
@@ -780,7 +780,7 @@ to build another branch, you need to make a commit there so that Vexor can pick 
 
 Vexor also supports SSHing into the build slave, but there is a catch. SSH access is only available while the slave
 is running. If your build finishes too fast you are out of luck. So the trick is to add some sleep statements
-in you build script. 
+in your build script. 
 
 ![Vexor ssh session](../../assets/ci-comparison/vexor/ssh-in.png)
 
@@ -819,7 +819,7 @@ does exactly what it says on the box.
 
 
 [Wercker](http://www.wercker.com/) is a company launched in 2012 with offices in San Francisco, London and Amsterdam.
-They have a very active web page with [blogs posts](http://blog.wercker.com/) covering apart from CI, topics such as deployments and Kubernetes.
+They have a very active web page with [blog posts](http://blog.wercker.com/) covering apart from CI, topics such as deployments and Kubernetes.
 
 **Update April 2017**: Oracle [bought Wercker](https://www.oracle.com/corporate/acquisitions/wercker/index.html) so my review might soon be obsolete.
 
@@ -843,7 +843,7 @@ On the plus side, Wercker provides a [command line client](http://www.wercker.co
 the build locally (using Docker). The CLI is available only for Linux and MacOSX. The CLI is open-source
 and [available on GitHub](https://github.com/wercker/wercker) (unlike Codeship Pro). A very nice feature indeed.
 
-Wercker also supports pipelines but in strange way. You have to define them in the yml file and then connect
+Wercker also supports pipelines but in a strange way. You have to define them in the yml file and then connect
 them in the UI.
 
 ![Wercker pipelines](../../assets/ci-comparison/wercker/pipeline.png)
@@ -937,7 +937,7 @@ Distelli and Buddy have the most comprehensive pipeline support. Wercker also of
 
 ##### Local builds
 
-It is very convenient to be able to run a build locally in exactly the same manner as the build server. At the time or writing
+It is very convenient to be able to run a build locally in exactly the same manner as the build server. At the time of writing
 only Codeship Pro and Wercker support this feature (i.e. building without committing anything).
 
 Distelli takes a completely different approach allowing you to use local build servers (but they are still managed

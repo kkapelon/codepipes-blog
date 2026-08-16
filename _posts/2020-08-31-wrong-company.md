@@ -15,7 +15,7 @@ ahead. Is this company finally the dream job?
 If you are a seasoned veteran and have already changed
 companies a few times, you should hopefully also know what
 to address in the interview process in order to avoid “bad”
-companies. Information Technology is slowing becoming an
+companies. Information Technology is slowly becoming an
 integral part for all companies, not just software ones. So, it
 is important to understand that the level of software maturity
 and how a company treats the software development process
@@ -153,7 +153,7 @@ connection with you if they are going to change companies
 soon.
 
 The second reason might be that simply your team does not
-care. After so many long hours, missed deadlines, frantic firelights, and time-consuming meetings they simply do not have
+care. After so many long hours, missed deadlines, frantic firefights, and time-consuming meetings they simply do not have
 the energy to welcome you and connect with you.
 
 Both reasons are equally bad. Your team’s reaction towards you says a lot of things about the time you will stay in

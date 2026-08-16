@@ -102,7 +102,7 @@ public class AnimalFactory {
 }
 ```
 
-This code is very dangerous since no compile time check can save you. A developer might call your factory using a misspelled string like `createAnimal(“dig”)` expecting a dog (a not a cat). The code will compile fine and the error will only appear later during runtime. Depending on the application the appearance of the error might be after one month when the application has reached production! Ouch.
+This code is very dangerous since no compile time check can save you. A developer might call your factory using a misspelled string like `createAnimal(“dig”)` expecting a dog (not a cat). The code will compile fine and the error will only appear later during runtime. Depending on the application the appearance of the error might be after one month when the application has reached production! Ouch.
 
 Do yourself a favour and use all facilities Java offers for compile time safety. Here is a more correct approach (there are other possible solutions) that only compiles when it is correct.
 
@@ -185,7 +185,7 @@ You should also check out this discussion on [rich versus anemic domain](https:/
 
 ## Common Pitfall #7: Using excessive lazy loading (i.e. not understanding your object lifecycle)
 
-More frequently that I’d like, I discover code like this:
+More frequently than I’d like, I discover code like this:
 
 ```java
 public class CreditCardProcessor {
@@ -211,16 +211,16 @@ public class CreditCardProcessor {
 }
 
 ```
-The original idea behind lazy loading is valid: If you have an expensive object, it makes sense to create it only if is needed. However, before applying this technique you have to be really sure that:
+The original idea behind lazy loading is valid: If you have an expensive object, it makes sense to create it only if it is needed. However, before applying this technique you have to be really sure that:
 
  * The object is really “expensive” (how do you define that?)
  * There are cases when the object is not used (and thus it does not need to be created)
 
-I increasingly see this `if` structure in objects, which either are not really “heavy” or objects that get created always during runtime – so what is the gain?
+I increasingly see this `if` structure in objects, which either are not really “heavy” or are objects that get created always during runtime – so what is the gain?
 
 The main problem of overusing this technique is the fact that it hides the lifecycle of your components. A well-built application has a clear lifecycle of its main constructs. It should be clear when objects are created, used and destroyed. Several DI frameworks can help you with your object lifecycle.
 
-But the truly hideous use of this technique comes from into the picture when object creation has side effects. This means that the state of your application depends on the order of object creation (the order of the type of requests that come in). Suddenly debugging your application is next to impossible since there are so many cases to cover. Replicating an issue that happened in production is a huge task because you have to know the order in which the if statements run.
+But the truly hideous use of this technique comes into the picture when object creation has side effects. This means that the state of your application depends on the order of object creation (the order of the type of requests that come in). Suddenly debugging your application is next to impossible since there are so many cases to cover. Replicating an issue that happened in production is a huge task because you have to know the order in which the if statements run.
 
 Instead of using this, just define all the objects needed during application startup. This has also the added advantage that you can catch any fatal issues when they appear during application deployment.
 
@@ -271,7 +271,7 @@ What I am going to explain is that you should pay attention to what methods you 
 
 I am really tired of seeing public methods that should be **private**. Not only because they expose the internal implementation details of class, but also because almost never should they be used outside of this class in the first place.
 
-A corollary to this is that you always use unit tests for the public methods of your class. I have seen so-called architects who believe that that it’s acceptable to convert private methods to public so that they can run unit tests against them.
+A corollary to this is that you always use unit tests for the public methods of your class. I have seen so-called architects who believe that it’s acceptable to convert private methods to public so that they can run unit tests against them.
 
 [Testing private methods is simply wrong](https://shoulditestprivatemethods.com/). Just test the public method that calls the private one. 
 
@@ -346,6 +346,6 @@ Remember the mantra for optimizations – **measure, don’t guess**.
 
 ## Conclusion
 
-If I seem a bit grouchy, it’s because I’ve had more than my fair share of cleaning up the messes left by experienced coders. In a way is even worse than fixing the mistakes made by beginners — senior developers should know better! ;-)
+If I seem a bit grouchy, it’s because I’ve had more than my fair share of cleaning up the messes left by experienced coders. In a way it is even worse than fixing the mistakes made by beginners — senior developers should know better! ;-)
 
 Hopefully, this list of 10 common pitfalls made by the senior developer helps you discover some areas where your expertise should be put to use in problem solving. Even the best coders out there should remember that there is always something to [re-]learn and put into practice.
