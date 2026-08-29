@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Docker intermeiate guide
+title: Docker intermediate guide
 category: containers
 ---
 
@@ -44,7 +44,7 @@ RUN rm kubectl
 
 ```
 
-This dockerfile starts from the [alpine image](https://hub.docker.com/_/alpine?tab=tags) which is a minimal docker image around 4-5 MBs of space. It then downloads a big file and then immediatelly deletes it.
+This dockerfile starts from the [alpine image](https://hub.docker.com/_/alpine?tab=tags) which is a minimal docker image around 4-5 MBs of space. It then downloads a big file and then immediately deletes it.
 
 So how big is the resulting image? If you build this file and check its size you might be amazed to see that it is close to 50MBs
 
@@ -65,7 +65,7 @@ $ docker run -it my-minimal-docker-image sh
 total 0
 ```
 
-So where  are the 50MBs coming from? They are coming from the previous layer. Remember the cake analogy. This docker image has a layer with the 50 MB file and then a **second** layer on top which delete the `kubectl` file. The second layer does not change the contents of the first.
+So where are the 50MBs coming from? They are coming from the previous layer. Remember the cake analogy. This docker image has a layer with the 50 MB file and then a **second** layer on top which delete the `kubectl` file. The second layer does not change the contents of the first.
 
 This means that you need to create and clean-up in the same layer.
 
@@ -82,7 +82,7 @@ WORKDIR /incoming
 RUN wget https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/darwin/amd64/kubectl && \
   rm kubectl
 ```
-If you build this docker file you will see that it is actually 5 MBs.
+If you build this Dockerfile you will see that it is actually 5 MBs.
 
 The example might seem contrived but it actually makes sense if you see how updates are installed on real Dockerfiles.
 
@@ -117,9 +117,9 @@ RUN go build -o bin/sample src/sample/my-example-app.go
 RUN wget https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/darwin/amd64/kubectl
 ```
 
-Here I am compiling my Go source code and the also downloading the `kubectl` command which is 50MBs.
+Here I am compiling my Go source code and also downloading the `kubectl` command which is 50MBs.
 
-If you build the docker image Docker will create caches for both layer that are formed by the `RUN commands`.
+If you build the docker image Docker will create caches for both layers that are formed by the `RUN` commands.
 
 If you then change anything in your source code and try to build the image again, you will see that Docker will re-download again `kubectl` because it assumes that both layers need rebuilding (remember the cake analogy. If you decide you want a different base for your cake you need to start the cake from scratch).
 
@@ -153,11 +153,11 @@ Successfully built 8ace884fd1f4
 
 ### Multi stage builds
 
-If you are still not sure about how Docker layers works, you can take matters in your own hands by using [Multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/)
+If you are still not sure about how Docker layers work, you can take matters in your own hands by using [Multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/)
 
 Multi-stage builds break the cake analogy. Instead of having each docker layer build on top of the previous one you can decide exactly what gets copied from each layer to the next.
 
-In fact that order of layers does not really matter if you use multi-stage build. Only what you copy matters. Multi-stage build help you by allowing you to define exactly what goes in your final Docker image.
+In fact the order of layers does not really matter if you use multi-stage build. Only what you copy matters. Multi-stage builds help you by allowing you to define exactly what goes in your final Docker image.
 
 Here is a Dockerfile for a Go web application:
 
@@ -171,13 +171,13 @@ CMD ["/go/bin/sample"]
 
 At first glance this Dockerfile looks correct. However if you look at the size of the image you will see that it is about 700MB. 
 
-The reason behind this size is that the [golang](https://hub.docker.com/_/golang) image is a full blow debian image and it includes more things than you actually need.
+The reason behind this size is that the [golang](https://hub.docker.com/_/golang) image is a full-blown debian image and it includes more things than you actually need.
 
 You could try to find a slimmer go image or create your own in order to cut the size down. This approach would work but it is very time consuming.
 
 Multi-stage builds allow you to think outside of the box. You can use specific docker layers for compiling/packaging your application that are not actually shipped to the final image.
 
-Especially for GO applications the results are impressive, because GO executables don't actually need the full GO development enviroment to run. 
+Especially for GO applications the results are impressive, because GO executables don't actually need the full GO development environment to run. 
 
 Here is the multi-stage build of the previous example:
 
@@ -204,16 +204,16 @@ This was just a very simple example. You can use multi-stage builds to run unit 
 
 The last point to consider regarding Docker build performance is your build context. The build context is what gets sent to the Docker daemon in order to create the image.
 
-By default the build context is **ALL** files in your current directory when you run the build commands. This means that if you don't pay any attention blindly running `docker build` in your project folder you are sending to the the daemon:
+By default the build context is **ALL** files in your current directory when you run the build commands. This means that if you don't pay any attention blindly running `docker build` in your project folder you are sending to the daemon:
 
 * The contents of `.git`
 * The contents of `node_modules` for node projects
 * The content of `target` for Java projects
 * The content of `/docs`, `/sql-scripts`, `/db-dumps` and every other folder currently in your project.
 
-This can result in very slow build times. It can also present issues with the Docker build process as it can mix libraries that were created out of the container (i.e. the existing `node_modules`) with the those that were created inside the container (i.e. if you run `npm install` in your Dockerfile).
+This can result in very slow build times. It can also present issues with the Docker build process as it can mix libraries that were created out of the container (i.e. the existing `node_modules`) with those that were created inside the container (i.e. if you run `npm install` in your Dockerfile).
 
-You need to make sure that you have a `.dockerginore` file which at the very minimum contains `.git`.
+You need to make sure that you have a `.dockerignore` file which at the very minimum contains `.git`.
 
 Then depending on your programming language and build system you also need to define all folders that are unrelated to the build process.
 
@@ -248,9 +248,9 @@ HEALTHCHECK --interval=10s --timeout=3s CMD wget --quiet --tries=1 --spider http
 
 Here I am using `wget` to test the url of the application. You can also use `curl` or any other command/script to verify the correctness of your container. 
 
-The healtcheck command does not need to deal with ports. It could also check for a file, an environment variable or anything else that you can think of that can be scripted and has a binary result (0 success, 1 failure).
+The healthcheck command does not need to deal with ports. It could also check for a file, an environment variable or anything else that you can think of that can be scripted and has a binary result (0 success, 1 failure).
 
-Docker health checks are used a sanity checks. You can see the status of your container when
+Docker health checks are used as sanity checks. You can see the status of your container when
 
 * you run `docker ps`
 * you run `docker inspect`
@@ -264,9 +264,9 @@ CONTAINER ID IMAGE      COMMAND        CREATED      STATUS
 b0ea7c       my-app-hc  "/sample"    2 minutes ago  Up 2 minutes (healthy)   
 ```
 
-The healtcheck directive also supports settings for:
+The healthcheck directive also supports settings for:
  * start period (how much time to wait before first check)
- * internal (how often to check afterwards)
+ * interval (how often to check afterwards)
  * timeout (how long can each check take)
  * retries (number of times to retry)
 
@@ -286,25 +286,25 @@ Before talking about promotion, let's look at base images.
 
 Most example dockerfiles that you can find on-line (including those already shown in this article) start from some well known image (with the `FROM` directive) such as [python](https://hub.docker.com/_/python/), [node](https://hub.docker.com/_/node/), [alpine](https://hub.docker.com/_/alpine/) etc.
 
-These are top level images that are curated by the Docker team and are expected to be safe/stable. You can always see their Dockerfile adopt it your needs if you want to create a custom image.
+These are top level images that are curated by the Docker team and are expected to be safe/stable. You can always see their Dockerfile and adopt it to your needs if you want to create a custom image.
 
 Every other image contained in Dockerhub (in the form of username/image) is unofficial and has no guarantees regarding safety and stability. It is ok to use Dockerhub images for experiments or side projects, but not a very good practice for security sensitive companies
 
 In a company environment you are not typically creating images starting from Dockerhub. You should instead create your own base images that describe exactly what your environment needs.
 
-The creation of base docker image does not always happpen by developers. Your company might have a dedicated team for this purpose.
+The creation of base docker image does not always happen by developers. Your company might have a dedicated team for this purpose.
 
 Your company Docker images will typically reside in a private Docker registry which is completely internal. In most cases, a security scanning service will also be in place to scan the images uploaded for vulnerabilities.
 
-It is hard to descibe what should go in a base image because it is very specific to company processes. Usually it should have
+It is hard to describe what should go in a base image because it is very specific to company processes. Usually it should have
 
 * the main programming language utilities used within the company
-* test frameworks, quality scanning, linting tools etcs
-* special security updates, custom certitificates or other secure libraries
+* test frameworks, quality scanning, linting tools etc.
+* special security updates, custom certificates or other secure libraries
 
-It also possible to have more than one base images and use them in different build phases (as seen in multi-stage builds).
+It is also possible to have more than one base images and use them in different build phases (as seen in multi-stage builds).
 
-The point is that if you are joining a company you should learn about the base images that are used already and use them as the starting point from your dockerfile.
+The point is that if you are joining a company you should learn about the base images that are used already and use them as the starting point for your dockerfile.
 
 Most of your Dockerfiles should look like this:
 
@@ -330,9 +330,9 @@ COPY --from=builder ....
 [...package something]
 ```
 
-And if you find that there are no base images, co-ordinate with your team to create some!
+And if you find that there are no base images, coordinate with your team to create some!
 
-Base images will make your Docker builds much faster as well, because they will be typically be using the cache effectively (see the first section of this article).
+Base images will make your Docker builds much faster as well, because they will typically be using the cache effectively (see the first section of this article).
 
 
 
@@ -346,7 +346,7 @@ First of all let's clear some misconceptions regarding the `latest` tag. Here ar
 1. Don't use the `latest` tag for any production project/workflow
 1. Don't use the `latest` tag for any production project/workflow
 
-The problem with the `latest` tag is that people assume that it is special while in reality it isn't. A docker image is tagged as latest explictly or it gets this tag if it is not tagged at all. It is **NOT** the most recent tag of docker version.
+The problem with the `latest` tag is that people assume that it is special while in reality it isn't. A docker image is tagged as latest explicitly or it gets this tag if it is not tagged at all. It is **NOT** the most recent tag of docker version.
 
 Here is a simple example.
 ```dockerfile
@@ -365,7 +365,7 @@ $ docker run my-app
 version 1
 ```
 
-So now I tell my teamates (or my CI system) to use my image and use the latest tag.
+So now I tell my teammates (or my CI system) to use my image and use the latest tag.
 
 Now I want to update my image. So I change my dockerfile to:
 
@@ -393,7 +393,7 @@ In order to avoid pitfalls with `latest` it is much safer to tag your images exp
 2. Don't build empty/latest tags
 3. Don't use empty/latest tags in your dockerfiles or CI builds
 
-Now you know about the `latest` tag. So how you should tag your Docker images.
+Now you know about the `latest` tag. So how should you tag your Docker images.
 
 There is no standard rule here. Docker allows you to use any kind of tags that matches your workflow. A common pattern would be application versions
 
@@ -429,12 +429,12 @@ Successfully tagged my-app:production
 Successfully tagged my-app:git-commit-323a3aa1f8ac
 ```
 
-The point here is to agree with your team on a set of tag rules and naming conventions. All members of the team should follow then the **same** rules.
+The point here is to agree with your team on a set of tag rules and naming conventions. All members of the team should follow the **same** rules.
 
 
 ### Pushing and promoting
 
-Dockerhub is the default public repositories for Docker images. It is good for learning who docker pushing works. But in production scenarios it should not be your only Docker registry.
+Dockerhub is the default public repositories for Docker images. It is good for learning how Docker pushing works. But in production scenarios it should not be your only Docker registry.
 
 In a team/company you should have at least 3 Docker registries in place
 
@@ -442,9 +442,9 @@ In a team/company you should have at least 3 Docker registries in place
 2. The production registry
 3. The public registry
 
-The development registry is where **ALL** Docker images end up as created from developers. It should be considered emphemeral and non-production (periodically it should be cleaned from all images)
+The development registry is where **ALL** Docker images end up as created from developers. It should be considered ephemeral and non-production (periodically it should be cleaned from all images)
 
-Images containerd in the development registry should shared within teams for experimentation and testing. The development registry should also be accessible by all developers (anybody should be able to push to it even from a workstation)
+Images contained in the development registry should be shared within teams for experimentation and testing. The development registry should also be accessible by all developers (anybody should be able to push to it even from a workstation)
 
 The production registry on the other hand has very strict security requirements. First of all nobody can push there by hand. Only a CI server should have access by promoting images from the development registry. 
 
@@ -473,7 +473,7 @@ The [official tutorial](https://docs.docker.com/compose/gettingstarted/) is very
 
 A more interesting example is also the [voting-app](https://github.com/dockersamples/example-voting-app/blob/master/docker-compose.yml).
 
-The first thing to know regading docker compose is the syntax. The "canonical" version of compose is version 2. [Version 3](https://docs.docker.com/compose/compose-file/compose-versioning/) might be newer but can sometimes be very confusing because it is blurring the capabilities of Docker compose with [Docker swarm](https://docs.docker.com/engine/swarm/) which is another product by Docker Inc.
+The first thing to know regarding Docker compose is the syntax. The "canonical" version of compose is version 2. [Version 3](https://docs.docker.com/compose/compose-file/compose-versioning/) might be newer but can sometimes be very confusing because it is blurring the capabilities of Docker compose with [Docker swarm](https://docs.docker.com/engine/swarm/) which is another product by Docker Inc.
 
 If you are learning your way around Docker-compose stick with [version 2](https://docs.docker.com/compose/compose-file/compose-file-v2/). 
 
@@ -481,7 +481,7 @@ The second important point is that Docker compose can both build images on the f
 
 ### Where to Go from Here
 
-I hope you found this intermediate guide useful. There are so many more topics to discover on this area.
+I hope you found this intermediate guide useful. There are so many more topics to discover in this area.
 
 * Service dependencies
 * Volume mounting
