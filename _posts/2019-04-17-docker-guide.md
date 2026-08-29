@@ -22,7 +22,7 @@ Creating a Dockerfile is not rocket science but you always need to pay attention
 
 ### Docker layers and how they work
 
-Docker images are created in layers. You can visualize them as cake with different flavors. Each layer sits on top of the previous one.
+Docker images are created in layers. You can visualize them as a cake with different flavors. Each layer sits on top of the previous one.
 
 In a Dockerfile, every time that you add a new directive (i.e. a `RUN`,`COPY`, `ADD` command) you create a new layer.
 
@@ -44,9 +44,9 @@ RUN rm kubectl
 
 ```
 
-This dockerfile starts from the [alpine image](https://hub.docker.com/_/alpine?tab=tags) which is a minimal docker image around 4-5 MBs of space. It then downloads a big file and then immediately deletes it.
+This dockerfile starts from the [alpine image](https://hub.docker.com/_/alpine?tab=tags) which is a minimal docker image around 4-5 MB of space. It then downloads a big file and then immediately deletes it.
 
-So how big is the resulting image? If you build this file and check its size you might be amazed to see that it is close to 50MBs
+So how big is the resulting image? If you build this file and check its size you might be amazed to see that it is close to 50 MB
 
 ```shell
 $ docker build . -t my-minimal-docker-image
@@ -65,7 +65,7 @@ $ docker run -it my-minimal-docker-image sh
 total 0
 ```
 
-So where are the 50MBs coming from? They are coming from the previous layer. Remember the cake analogy. This docker image has a layer with the 50 MB file and then a **second** layer on top which delete the `kubectl` file. The second layer does not change the contents of the first.
+So where are the 50 MB coming from? They are coming from the previous layer. Remember the cake analogy. This docker image has a layer with the 50 MB file and then a **second** layer on top which deletes the `kubectl` file. The second layer does not change the contents of the first.
 
 This means that you need to create and clean-up in the same layer.
 
@@ -82,7 +82,7 @@ WORKDIR /incoming
 RUN wget https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/darwin/amd64/kubectl && \
   rm kubectl
 ```
-If you build this Dockerfile you will see that it is actually 5 MBs.
+If you build this Dockerfile you will see that it is actually 5 MB.
 
 The example might seem contrived but it actually makes sense if you see how updates are installed on real Dockerfiles.
 
@@ -117,11 +117,11 @@ RUN go build -o bin/sample src/sample/my-example-app.go
 RUN wget https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/darwin/amd64/kubectl
 ```
 
-Here I am compiling my Go source code and also downloading the `kubectl` command which is 50MBs.
+Here I am compiling my Go source code and also downloading the `kubectl` command which is 50 MB.
 
 If you build the docker image Docker will create caches for both layers that are formed by the `RUN` commands.
 
-If you then change anything in your source code and try to build the image again, you will see that Docker will re-download again `kubectl` because it assumes that both layers need rebuilding (remember the cake analogy. If you decide you want a different base for your cake you need to start the cake from scratch).
+If you then change anything in your source code and try to build the image again, you will see that Docker will re-download `kubectl` because it assumes that both layers need rebuilding (remember the cake analogy. If you decide you want a different base for your cake you need to start the cake from scratch).
 
 The correct approach is to start your Dockerfile with the layers that change rarely and add layers that change often (such as the source code) at the bottom of the dockerfile.
 
@@ -171,9 +171,9 @@ CMD ["/go/bin/sample"]
 
 At first glance this Dockerfile looks correct. However if you look at the size of the image you will see that it is about 700MB. 
 
-The reason behind this size is that the [golang](https://hub.docker.com/_/golang) image is a full-blown debian image and it includes more things than you actually need.
+The reason behind this size is that the [golang](https://hub.docker.com/_/golang) image is a full-blown debian image and it includes more than you actually need.
 
-You could try to find a slimmer go image or create your own in order to cut the size down. This approach would work but it is very time consuming.
+You could try to find a slimmer go image or create your own in order to cut the size down. This approach would work but it is very time-consuming.
 
 Multi-stage builds allow you to think outside of the box. You can use specific docker layers for compiling/packaging your application that are not actually shipped to the final image.
 
@@ -196,7 +196,7 @@ Here even though we start from the same go image, we use it only to compile a st
 
 Then we discard that layer and copy from it only the executable. The layer that is actually shipped comes from [scratch](https://hub.docker.com/_/scratch) which is a very minimal docker image. 
 
-The resulting image is about 8MBs! Most of this comes from the executable.
+The resulting image is about 8 MB! Most of this comes from the executable.
 
 This was just a very simple example. You can use multi-stage builds to run unit tests, perform static linting, run quality scans without affecting the final size of the image.
 
