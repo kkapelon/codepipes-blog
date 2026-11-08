@@ -54,14 +54,14 @@ So far the setup works great. I have only used it in places such as hotels and a
 
 ## F.A.Q.
 
-Q. Dude, just get a laptop
+Q. Dude, just get a laptop  
 A. I already have a business laptop for my trips. Getting a second laptop just for running my personal agents would increase the weight a lot. Not to mention the cost.
 
-Q. Just get a tablet then
+Q. Just get a tablet then  
 A. An Android tablet with a 14-inch OLED screen costs almost $1400. The Retroid is something I already had. Also, the latest Samsung flagship tablets do not use Snapdragon, so I would still have to carry the Retroid for emulators.
 
-Q. What about a mobile phone (like everybody else)?
+Q. What about a mobile phone (like everybody else)?  
 A. Only flagship (i.e. very expensive) mobile phones support video output over USB-C. The price of the Retroid is now less than $200. And it always doubles as a game console. Also, when I am on a trip I prefer to only use my mobile phone for essential tasks (maps, calls, tickets, etc.).
 
-Q. What mini PC do you use?
+Q. What mini PC do you use?  
 A. Nothing special. Just a GMKtec G10. It only runs the agents. I have another gaming PC that I am going to set up for running LLMs as well, but this is for another article.
